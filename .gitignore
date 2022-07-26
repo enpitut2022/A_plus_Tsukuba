@@ -5,9 +5,6 @@
 *.log
 *.pot
 *.pyc
-*~
-db-volumes/
-/.vscode
 __pycache__/
 local_settings.py
 db.sqlite3
