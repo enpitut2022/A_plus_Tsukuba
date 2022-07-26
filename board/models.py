@@ -8,3 +8,6 @@ class Post(models.Model):
     sender_name = models.CharField(verbose_name='投稿者名(匿名)', max_length=40)
     text = models.TextField(verbose_name='本文')
     created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
+
+    def __str__(self):
+        return self.name

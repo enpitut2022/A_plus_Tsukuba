@@ -20,7 +20,7 @@ function init(){
         let span = document.createElement("span");
         span.textContent = message;
         span.classList.add("message_str");
-        p_message.textContent = "id:"+ id;
+        p_message.textContent = "name:"+ id;
         p_message.appendChild(span);
 
         id++;
