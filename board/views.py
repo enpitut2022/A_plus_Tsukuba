@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Post
+from django.views.generic import TemplateView, ListView
 
-
-def index(request):
-    return HttpResponse("Hello, world.\nチーム名: 半分、青い。\nプロダクト名: A+つくば")
+class Index(ListView):
+    template_name = "board/Chat.html"
+    model = Post
+    context_object_name = 'post_data'
+    ordering = ['-created_at']

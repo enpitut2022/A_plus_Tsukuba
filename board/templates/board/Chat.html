@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>My Chat</title>
+    <link rel="stylesheet" href="{% static 'board/style.css' %}">
+    <script src = "{% static 'board/script.js' %}"></script>
+</head>
+<body>
+    <div id="left">
+        <div id="left_top">
+            <h1><img src="{% static 'board/enpit.png' %}" width="80" height="80" alt="art"></h1>
+        </div>
+        <div id="left_rest">
+
+        </div>
+    </div>
+    <div id="right">
+    <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
+    ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
+    <form action="" onsubmit="return false;">
+        Message : <input type="text" id="input_message" autocomplete="off" autofocus /><input type="submit" id="submit_message" value="Send" />
+    </form>
+
+    <ul id="list_message"></ul>
+    {% for post in post_data %}
+    <div>
+        <p>----------------------------------------------</p>
+        <h2>名前：  {{ post.sender_name }}</h2>
+        <p>内容：{{ post.text }}</p>
+    </div>
+    {% endfor %}
+    </div>
+</body>
+
+</html>
