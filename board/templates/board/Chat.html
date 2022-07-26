@@ -8,9 +8,15 @@
     <script src = "{% static 'board/script.js' %}"></script>
 </head>
 <body>
-    <div>
-    <h1><img src="{% static 'board/logo.jpeg' %}" width="80" height="80" alt="art"></h1>
+    <div id="left">
+        <div id="left_top">
+            <h1><img src="{% static 'board/enpit.png' %}" width="80" height="80" alt="art"></h1>
+        </div>
+        <div id="left_rest">
+
+        </div>
     </div>
+    <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
     <form action="" onsubmit="return false;">
@@ -25,7 +31,7 @@
         <p>内容：{{ post.text }}</p>
     </div>
     {% endfor %}
-
+    </div>
 </body>
 
 </html>

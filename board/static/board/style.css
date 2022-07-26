@@ -1,18 +1,51 @@
-body {
-    font-family: serif;
-    text-align: center;
-  }
-
   h1 {
     font-size: 2em;
     border-bottom:4px solid purple;
     font-weight: normal;
     margin: 0;
     /*left: 50%;*/
-    margin-left: -90%;
+    margin-left: -10%;
     /*the size of jpeg is 80% of the size of the screen*/
   }
 
-  #message_str {
+  .message_str {
     font-size: 1em;
+  }
+
+  html{
+    height:100%;
+  }
+
+  body{
+    display: flex;
+    height: 100%;
+    margin: 0;
+    font-family: serif;
+    text-align: center;
+  }
+
+  #left, #right{
+    width:15%;
+    display: inline-block;
+    height: 100%;
+  }
+
+  #left{
+    background-color:rgb(119, 0, 128);
+  }
+
+  #left_top{
+    height: 20%;
+    background-color: rgb(214, 88, 223);
+    position: relative;
+    object-fit: cover;
+  }
+
+  #logo_locate{
+    display: inline-block;
+    font-size: 3em;
+    color: white;
+    position: absolute;
+    top:50%;
+    text-align: center	
   }
