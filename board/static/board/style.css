@@ -1,0 +1,18 @@
+body {
+    font-family: serif;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2em;
+    border-bottom:4px solid purple;
+    font-weight: normal;
+    margin: 0;
+    /*left: 50%;*/
+    margin-left: -90%;
+    /*the size of jpeg is 80% of the size of the screen*/
+  }
+
+  #message_str {
+    font-size: 1em;
+  }

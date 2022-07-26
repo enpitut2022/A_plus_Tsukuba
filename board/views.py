@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Post
+from django.views.generic import TemplateView
 
-
-def index(request):
-    return HttpResponse("Hello, world.\nチーム名: 半分、青い。\nプロダクト名: A+つくば")
+class Index(TemplateView):
+    template_name = "board/Chat.html"
+    model = Post
+    context_object_name = 'Posts'
