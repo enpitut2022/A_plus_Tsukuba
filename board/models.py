@@ -10,4 +10,4 @@ class Post(models.Model):
     created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
 
     def __str__(self):
-        return self.name
+        return self.sender_name
