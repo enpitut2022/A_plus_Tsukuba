@@ -27,8 +27,8 @@
     {% for post in post_data %}
     <div>
         <p>----------------------------------------------</p>
-        <h2>名前：  {{ post.sender_name }}</h2>
-        <p>内容：{{ post.text }}</p>
+        <p class="username">名前：  {{ post.sender_name }}</p>
+        <p class="content">内容：{{ post.text }}</p>
     </div>
     {% endfor %}
     </div>
