@@ -19,16 +19,7 @@
     <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-        <div id="form">
-            <form action="/" method="POST">
-                {% csrf_token %} 
-                Name : <input type="text" id="input_message" autocomplete="off" name="username" autofocus placeholder="名無し" />
-                <br>
-                Message : <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
-                <input type="submit" id="submit_message" value="Send" />
-            </form>
-        </div>
-
+        
         <div id="log_list">
             <ul id="list_message"></ul>
             {% for post in post_data %}
@@ -40,6 +31,15 @@
             {% endfor %}
         </div>
         
+        <div id="form">
+            <form action="/" method="POST">
+                {% csrf_token %} 
+                Name : <input type="text" id="input_message" autocomplete="off" name="username" autofocus placeholder="名無し" />
+                <br>
+                Message : <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
+                <input type="submit" id="submit_message" value="Send" />
+            </form>
+        </div>
     </div>
 </body>
 
