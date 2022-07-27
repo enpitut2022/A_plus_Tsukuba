@@ -19,8 +19,12 @@
     <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-    <form action="" onsubmit="return false;">
-        Message : <input type="text" id="input_message" autocomplete="off" autofocus /><input type="submit" id="submit_message" value="Send" />
+    <form action="/" method="POST">
+        {% csrf_token %} 
+        Name : <input type="text" id="input_message" autocomplete="off" name="username" autofocus />
+        <br>
+        Message : <input type="text" id="input_message" autocomplete="off" name="message" autofocus />
+        <input type="submit" id="submit_message" value="Send" />
     </form>
 
     <ul id="list_message"></ul>
