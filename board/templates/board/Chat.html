@@ -24,23 +24,22 @@
             <ul id="list_message"></ul>
             {% for post in post_data %}
             <div>
-                <p>----------------------------------------------------------------------------------</p>
+                <hr>
                 <p class="username">名前：  {{ post.sender_name }}</p>
-                <p class="content">内容：{{ post.text }}</p>
+                <p class="content">{{ post.text }}</p>
             </div>
             {% endfor %}
         </div>
-        
+
         <div id="form">
             <form action="/" method="POST">
                 {% csrf_token %} 
-                Name : <input type="text" id="input_message" autocomplete="off" name="username" autofocus placeholder="名無し" />
+                Name : <input type="text" id="input_name" autocomplete="off" name="username" autofocus placeholder="名無し" />
                 <br>
-                Message : <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
-                <input type="submit" id="submit_message" value="Send" />
+                <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
+                <input type="image" src="{% static 'board/submit.png' %}" id="submit_message" value="Send" />
             </form>
         </div>
     </div>
 </body>
-
 </html>
