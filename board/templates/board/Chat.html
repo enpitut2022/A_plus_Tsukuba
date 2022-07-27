@@ -22,9 +22,9 @@
         <div id="form">
             <form action="/" method="POST">
                 {% csrf_token %} 
-                Name : <input type="text" id="input_message" autocomplete="off" name="username" autofocus />
+                Name : <input type="text" id="input_message" autocomplete="off" name="username" autofocus placeholder="名無し" />
                 <br>
-                Message : <input type="text" id="input_message" autocomplete="off" name="message" autofocus />
+                Message : <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" id="submit_message" value="Send" />
             </form>
         </div>

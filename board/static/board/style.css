@@ -71,3 +71,9 @@
   #form, #log_list{
     display:inline-block;
   }
+  /*added*/
+
+  .row-5 {
+    height: calc( 1.3em * 10 );
+    line-height: 1.3;
+  }
