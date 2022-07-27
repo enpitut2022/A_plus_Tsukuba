@@ -25,13 +25,18 @@
   }
 
   #left, #right{
-    width:15%;
     display: inline-block;
     height: 100%;
   }
 
   #left{
+    width:15%;
     background-color:rgb(119, 0, 128);
+  }
+
+  #right{
+    display: flex;
+    /* max-width: 85%; */
   }
 
   #left_top{
@@ -59,4 +64,10 @@
   .content{
     font-size: 120%;
     margin: 0;
+    overflow-wrap: break-word;
+    margin-right: 5%;
+  }
+
+  #form, #log_list{
+    display:inline-block;
   }
