@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
+from django.shortcuts import redirect
 from django.views.generic import TemplateView, ListView
 
 class Index(ListView):
@@ -13,4 +14,4 @@ class Index(ListView):
         name = self.request.POST.get("username", None)
         msg = self.request.POST.get("message", None)
         self.model.objects.create(sender_name=name, text=msg)
-        return self.get(request, *args, **kwargs)
+        return redirect("index")
