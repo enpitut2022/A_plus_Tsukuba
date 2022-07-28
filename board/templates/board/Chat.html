@@ -24,8 +24,10 @@
     <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-        
         <div id="log_list">
+        <div class="em_view">
+            非常事態宣言数：<span class="em_count">{{ em_count }}</span>
+        </div>
             <ul id="list_message"></ul>
             {% for post in post_data %}
             <div>
@@ -58,7 +60,8 @@ A+つくばは
                     <option value="3">提案(^^)/~~~</option>
                     <option value="4">よしよし('ω')</option>
                     <option value="5">大丈夫？( *´艸｀)</option>
-                    <br>
+                </select>
+                <br>
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
             </form>

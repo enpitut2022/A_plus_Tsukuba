@@ -74,11 +74,7 @@
     width:50%;
   }
 
-  #form, #log_list{
-    display:inline-block;
-    width:50%;
-  }
-  /*added*/
+
 
   #log_list{
     overflow: scroll;
@@ -168,4 +164,16 @@ background-color: palevioletred;
   .daijoubu{
     background-color:burlywood;
     margin-left: 0.5%;
+  }
+  
+  .em_view {
+    font-size: 2em;
+    text-align: center;
+    background-color: red;
+    color: yellow;
+  }
+
+  .em_count{
+    font-size: 150%;
+    font-weight: bold;
   }
