@@ -30,7 +30,7 @@
             {% for post in post_data %}
             <div>
                 <hr>
-                <p class="username">名前：  {{ post.sender_name }}</p>
+                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.get_emotion_display }}</span>></p>
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}

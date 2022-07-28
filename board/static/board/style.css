@@ -139,3 +139,7 @@ background-color: palevioletred;
   .submit_button:active{
     background: #69821b; /* 濃い緑色 */
   }
+
+  .emotion_class{
+    background-color: green;
+  }
