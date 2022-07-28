@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>My Chat</title>
+    <title>A+ つくば</title>
     <link rel="stylesheet" href="{% static 'board/style.css' %}">
     <script src = "{% static 'board/script.js' %}"></script>
 </head>
@@ -11,9 +11,14 @@
     <div id="left">
         <div id="left_top">
             <h1><img src="{% static 'board/enpitA+.png' %}" width="90" height="90" alt="art"></h1>
+            <p class="side_msg_1">
+                課題をみんなで！
+            </p>
         </div>
         <div id="left_rest">
-
+            <p class="side_msg_2">
+                <b>夜22時</b>に集まろう！
+            </p>
         </div>
     </div>
     <div id="right">
@@ -29,12 +34,22 @@
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
+            <div>
+                <hr>
+                <p class="username">
+A+つくばは
+大学の課題を効率よく十分な品質で提出することができない
+(A+が取れない!!)問題を解決したい
+同じ講義に知り合いが少ない筑波大生向けの
+筑波大生専用の匿名学習支援SNS です。
+                </p>
+            </div>
         </div>
 
         <div id="form">
             <form action="/" method="POST">
                 {% csrf_token %} 
-                Name : <input type="text" id="input_name" autocomplete="off" value="名無し" readonly="readonly" name="username" autofocus />
+                Name : <input type="text" id="input_name" autocomplete="off" value="名無し" name="username" autofocus />
                 <br>
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
