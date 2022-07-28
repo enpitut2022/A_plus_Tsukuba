@@ -31,6 +31,7 @@
             <div>
                 <hr>
                 <p class="username">名前：  {{ post.sender_name }}</p>
+                {{ post.get_emotion_display }}
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
@@ -50,6 +51,11 @@ A+つくばは
             <form action="/" method="POST">
                 {% csrf_token %} 
                 Name : <input type="text" id="input_name" autocomplete="off" value="名無し" name="username" autofocus />
+                <!-- added -->
+                <select name="emotion_type">
+                    <option value="0">非常事態(´•_•; )</option>
+                    <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
+                    <option value="2">助かった(*´▽`人)</option>
                 <br>
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
