@@ -4,7 +4,7 @@
     font-weight: normal;
     margin: 0;
     /*left: 50%;*/
-    margin-left: -10%;
+    margin-left: 0%;
     /*the size of jpeg is 80% of the size of the screen*/
   }
 
@@ -136,6 +136,36 @@ background-color: palevioletred;
     background: #69821b; /* 濃い緑色 */
   }
 
+  .emergency{
+    background-color: yellow;
+    margin-left: 0.5%;
+  }
+
+  .zikkuri{
+    background-color: green;
+    margin-left: 0.5%;
+  }
+
+  .tasukatta{
+    background-color: blue;
+    margin-left: 0.5%;
+  }
+
+  .teian{
+    background-color:red;
+    margin-left: 0.5%;
+  }
+
+  .yoshiyoshi{
+    background-color: pink;
+    margin-left: 0.5%;
+  }
+
+  .daijoubu{
+    background-color:burlywood;
+    margin-left: 0.5%;
+  }
+  
   .em_view {
     font-size: 2em;
     text-align: center;
