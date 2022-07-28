@@ -24,8 +24,8 @@
     <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-        
         <div id="log_list">
+            {{ em_count }}
             <ul id="list_message"></ul>
             {% for post in post_data %}
             <div>
