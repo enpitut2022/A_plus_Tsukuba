@@ -73,6 +73,11 @@
     display:inline-block;
     width:50%;
   }
+
+  #form, #log_list{
+    display:inline-block;
+    width:50%;
+  }
   /*added*/
 
   #log_list{
@@ -101,7 +106,18 @@
   } */
 
 
+  .side_msg_1 {
+  color: white;
+display: block;
+background-color: palevioletred;
+  }
 
+  .side_msg_2 {
+    color: white;
+  display: block;
+  background-color: plum;
+  text-align: center;
+    }
 
   .submit_button {
   text-align: center;
