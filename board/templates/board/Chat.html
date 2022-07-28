@@ -34,7 +34,7 @@
         <div id="form">
             <form action="/" method="POST">
                 {% csrf_token %} 
-                Name : <input type="text" id="input_name" autocomplete="off" value="名無し" readonly="readonly" name="username" autofocus />
+                Name : <input type="text" id="input_name" autocomplete="off" value="名無し" name="username" autofocus />
                 <br>
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
