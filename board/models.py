@@ -7,6 +7,9 @@ class Post(models.Model):
         (0, "非常事態(´•_•; )"),  # (DB値, 読みやすい値)
         (1, "じっくり(-ω-;)ｳｰﾝ"),
         (2, "助かった(*´▽`人)"),
+        (3, "提案(^^)/~~~"),
+        (4, "よしよし('ω')"),
+        (5, "大丈夫？( *´艸｀)"),
     )
 
     post_id = models.UUIDField(verbose_name='投稿者id', primary_key=True, default=uuid.uuid4, editable=False)
