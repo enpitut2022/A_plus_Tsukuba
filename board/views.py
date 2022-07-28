@@ -8,9 +8,6 @@ from django.views.generic import TemplateView, ListView
 class Index(ListView):
     template_name = "board/Chat.html"
     model = Post
-    em_count = model.objects.filter(emotion=0).count()
-    print(em_count)
-    context = {"em_count" : em_count}
     context_object_name = 'post_data'
     ordering = ['-created_at']
 
@@ -21,5 +18,8 @@ class Index(ListView):
         self.model.objects.create(sender_name=name, text=msg, emotion=emo)
         return redirect("index")
 
-    def get(self, request, *args, **kwargs):
-        return self.get(request, *args, **kwargs)
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        em_count = self.model.objects.filter(emotion=0).count()
+        context["em_count"] = em_count
+        return context
