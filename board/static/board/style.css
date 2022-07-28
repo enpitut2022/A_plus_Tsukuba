@@ -99,3 +99,27 @@
   #log_list{
     position: absolute;
   } */
+
+
+
+
+  .submit_button {
+  text-align: center;
+  box-sizing: border-box;
+  display: block;
+  max-width: 200px;
+  width: 100%;
+  margin: 0 auto;
+  background: #447fff;
+  color: #fff;
+  font-weight: bold;
+  padding: 13px 10px 10px;
+  border-radius: 5px;
+  border-bottom: 5px solid rgba(0,0,0,0.3);
+  }
+  .submit_button:hover {
+    letter-spacing: 5px;
+  }
+  .submit_button:active{
+    background: #69821b; /* 濃い緑色 */
+  }
