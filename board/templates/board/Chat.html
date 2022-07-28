@@ -19,25 +19,29 @@
     <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
     ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-    <form action="/" method="POST">
-        {% csrf_token %} 
-        Name : <input type="text" id="input_message" autocomplete="off" name="username" autofocus />
-        <br>
-        Message : <input type="text" id="input_message" autocomplete="off" name="message" autofocus />
-        <input type="submit" id="submit_message" value="Send" />
-    </form>
+        
+        <div id="log_list">
+            <ul id="list_message"></ul>
+            {% for post in post_data %}
+            <div>
+                <hr>
+                <p class="username">名前：  {{ post.sender_name }}</p>
+                <p class="content">{{ post.text | linebreaksbr}}</p>
+            </div>
+            {% endfor %}
+        </div>
 
-    <ul id="list_message"></ul>
-    {% for post in post_data %}
-    <div>
-        <p>----------------------------------------------</p>
-        <p class="username">名前：  {{ post.sender_name }}</p>
-        <p class="content">内容：{{ post.text }}</p>
-    </div>
-    {% endfor %}
+        <div id="form">
+            <form action="/" method="POST">
+                {% csrf_token %} 
+                Name : <input type="text" id="input_name" autocomplete="off" value="名無し" readonly="readonly" name="username" autofocus />
+                <br>
+                <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
+                <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
+            </form>
+        </div>
     </div>
     <script src = "{% static 'board/ITFchk.js' %}"></script>
     <script>isITF();</script>
 </body>
-
 </html>
