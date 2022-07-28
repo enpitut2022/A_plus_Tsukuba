@@ -10,7 +10,7 @@
 <body>
     <div id="left">
         <div id="left_top">
-            <h1><img src="{% static 'board/enpitA+.png' %}" width="90" height="90" alt="art"></h1>
+            <h1><img src="{% static 'board/enpitA+.png' %}" width="110" height="110" alt="art"></h1>
             <p class="side_msg_1">
                 課題をみんなで！
             </p>
@@ -30,7 +30,7 @@
             {% for post in post_data %}
             <div>
                 <hr>
-                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.get_emotion_display }}</span>></p>
+                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.get_emotion_display }}</span></p>
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
@@ -55,7 +55,10 @@ A+つくばは
                     <option value="0">非常事態(´•_•; )</option>
                     <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
                     <option value="2">助かった(*´▽`人)</option>
-                <br>
+                    <option value="3">提案(^^)/~~~</option>
+                    <option value="4">よしよし('ω')</option>
+                    <option value="5">大丈夫？( *´艸｀)</option>
+                    <br>
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
             </form>
