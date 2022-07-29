@@ -6,6 +6,7 @@
     <title>A+ つくば</title>
     <link rel="stylesheet" href="{% static 'board/style.css' %}">
     <script src = "{% static 'board/script.js' %}"></script>
+    
 </head>
 <body>
     <div id="left">
@@ -20,10 +21,15 @@
                 <b>夜22時</b>に集まろう！
             </p>
         </div>
-
+        <div id="left_thread">
+            <p class="side_msg_3">
+                <b>スレッド一覧</b>
+            </p>
+        </div>
+        <input  id="threadID" type ="hidden" value="{{ thread_id }}"/>
         <div id="left_bottom">
             {% for thread in thread_data %}
-            <p class="side_url side_url_1">
+            <p class="side_url" data-id="{{ thread.pk }}">
                 <a href="{% url 'threads' thread.pk %}">{{ thread.title }}</a>
             </p>
             {% endfor %}
@@ -41,7 +47,7 @@
             {% for post in post_data %}
             <div>
                 <hr>
-                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.emotion }}</span></p>
+                <p class="username">{{ post.sender_name }}<span class="emotion_class">{{ post.emotion }}</span></p>
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
@@ -70,6 +76,8 @@ A+つくばは
                     <option value="4">よしよし('ω')</option>
                     <option value="5">大丈夫？( *´艸｀)</option>
                 </select>
+                <!-- added -->
+                <input type="hidden" id="thread_num" value="1" />
                 <br>
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
