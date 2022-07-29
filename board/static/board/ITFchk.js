@@ -21,8 +21,15 @@ function isITF() {
         }
         ITFmove();
     }else{
-        document.cookie = "ITF=true";
+        const dateObject = new Date();
+        dateObject.setTime( dateObject.getTime() + ( 30*24*60*60*1000 ) );
+        const expires = "expires=" + dateObject.toGMTString();
+        const path = "path=/";
+        //const domain = "Domain=" + "127.0.0.1";
+        const domain = "Domain=" + "a-plus-tsukuba.azurewebsites.net";
+        document.cookie = "ITF=true" + "; " + expires + "; " + path + "; " + domain;
     }
+
 }
 
 function ITFmove() {
