@@ -20,6 +20,15 @@
                 <b>夜22時</b>に集まろう！
             </p>
         </div>
+
+        <div id="left_bottom">
+            {% for thread in thread_data %}
+            <p class="side_url side_url_1">
+                <a href="{% url 'threads' thread.pk %}">{{ thread.title }}</a>
+            </p>
+            {% endfor %}
+        </div>
+        
     </div>
     <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
