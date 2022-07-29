@@ -29,7 +29,6 @@ class ThreadView(ListView):
         thread_posts = Post.objects.filter(thread_id = self.kwargs['thread_id']).order_by('-created_at').values()
         for post in thread_posts:
             post['emotion'] = Post.EMOTION[post['emotion']][1]
-            print(post["emotion"])
         context['post_data'] = thread_posts
         threads = Thread.objects.all()
         context['thread_data'] = threads.order_by('-created_at')
