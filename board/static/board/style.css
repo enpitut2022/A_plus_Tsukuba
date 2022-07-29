@@ -177,3 +177,18 @@ background-color: palevioletred;
     font-size: 150%;
     font-weight: bold;
   }
+
+  a{
+    text-decoration: none;
+    color: white;
+  }
+
+  a:visited{
+    color: white;
+  }
+
+  a:hover{
+    color:rgba(243, 191, 20, 0.978);
+    text-decoration: underline;
+  }
+
