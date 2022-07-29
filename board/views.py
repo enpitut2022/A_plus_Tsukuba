@@ -26,10 +26,11 @@ class ThreadView(ListView):
         context = super().get_context_data(*args, **kwargs)
         em_count = Post.objects.filter(emotion=0, thread_id = self.kwargs['thread_id']).count()
         context["em_count"] = em_count
-        thread_posts = Post.objects.filter(thread_id = self.kwargs['thread_id']).values()
-        for i,post in enumerate(thread_posts):
-            thread_posts[i]['emotion'] = Post.EMOTION[post['emotion']][1]
-        context['post_data'] = thread_posts.order_by('-created_at')
+        thread_posts = Post.objects.filter(thread_id = self.kwargs['thread_id']).order_by('-created_at').values()
+        for post in thread_posts:
+            post['emotion'] = Post.EMOTION[post['emotion']][1]
+            print(post["emotion"])
+        context['post_data'] = thread_posts
         threads = Thread.objects.all()
         context['thread_data'] = threads.order_by('-created_at')
         context['thread_id'] = self.kwargs['thread_id']
