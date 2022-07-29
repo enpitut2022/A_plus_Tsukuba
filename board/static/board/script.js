@@ -12,11 +12,7 @@ function init(){
     
     console.log(emotion.length);
     for (let i = 0; i < emotion_length; i++){
-        let emotion_str = array[i].textContent;
-        // console.log(array[i].textContent);
-        // console.log(i);
-
-
+        let emotion_str = array[i].textContent;       
         /*
         <select name="emotion_type">
                     <option value="0">非常事態(´•_•; )</option>
@@ -40,11 +36,26 @@ function init(){
             array[i].className = "yoshiyoshi"
         }else{
             array[i].className = "daijoubu"
-        }            
+        }
+    }
+
+    let thread_value = document.getElementById("thread_num").value;
+    console.log(thread_value);
+    let tmp = 1;
+    let all_thread = document.getElementsByClassName("side_url"); /*all_thread is array*/
+    if(thread_value == tmp){
+        // console.log(thread_id);
         
+        console.log(all_thread.length);
+
         
     }
 
+    
+    
+    // button.addEventListener("click",function(){
+    //     const message = document.getElementById("message").value;
+    
     // //送信ボタンに対してクリックイベントを登録
     // button.addEventListener("click", makeMessage);
 

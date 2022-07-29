@@ -21,27 +21,27 @@
             </p>
         </div>
         <div id="left_bottom">
-            <p class="side_url">
-                <a href="https://www.enpit.jp/">
+            <p class="side_url" value="1">
+                <a href="https://a-plus-tsukuba.azurewebsites.net/">
                     システムプログラム
                 </a>
             </p>
-            <p class="side_url">
+            <p class="side_url" value="2">
                 <a href="https://www.enpit.jp/">
                     情報可視化
                 </a>
             </p>
-            <p class="side_url">
+            <p class="side_url" value="3">
                 <a href="https://www.enpit.jp/">
                     プログラミングチャレンジ
                 </a>
             </p>
-            <p class="side_url">
+            <p class="side_url" value="4">
                 <a href="https://www.enpit.jp/">
                     アルゴリズムとデータ構造
                 </a>
             </p>
-            <p class="side_url">
+            <p class="side_url" value="5">
                 <a href="https://www.enpit.jp/">
                     PBL形式による〜実験
                 </a>
@@ -59,7 +59,7 @@
             {% for post in post_data %}
             <div>
                 <hr>
-                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.get_emotion_display }}</span></p>
+                <p class="username">{{ post.sender_name }} :  <span class="emotion_class">{{ post.get_emotion_display }}</span></p>
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
@@ -88,6 +88,8 @@ A+つくばは
                     <option value="4">よしよし('ω')</option>
                     <option value="5">大丈夫？( *´艸｀)</option>
                 </select>
+                <!-- added -->
+                <input type="hidden" id="thread_num" value="1" />
                 <br>
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
