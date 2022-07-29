@@ -3,9 +3,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta content="{{ thread_id}}" />
     <title>A+ つくば</title>
     <link rel="stylesheet" href="{% static 'board/style.css' %}">
     <script src = "{% static 'board/script.js' %}"></script>
+    
 </head>
 <body>
     <div id="left">
@@ -20,37 +22,10 @@
                 <b>夜22時</b>に集まろう！
             </p>
         </div>
-        <div id="left_bottom">
-            <p class="side_url" value="1">
-                <a href="https://a-plus-tsukuba.azurewebsites.net/">
-                    システムプログラム
-                </a>
-            </p>
-            <p class="side_url" value="2">
-                <a href="https://www.enpit.jp/">
-                    情報可視化
-                </a>
-            </p>
-            <p class="side_url" value="3">
-                <a href="https://www.enpit.jp/">
-                    プログラミングチャレンジ
-                </a>
-            </p>
-            <p class="side_url" value="4">
-                <a href="https://www.enpit.jp/">
-                    アルゴリズムとデータ構造
-                </a>
-            </p>
-            <p class="side_url" value="5">
-                <a href="https://www.enpit.jp/">
-                    PBL形式による〜実験
-                </a>
-            </p>
-        </div>
-
+        
         <div id="left_bottom">
             {% for thread in thread_data %}
-            <p class="side_url side_url_1">
+            <p class="side_url side_url_1" >
                 <a href="{% url 'threads' thread.pk %}">{{ thread.title }}</a>
             </p>
             {% endfor %}
@@ -68,11 +43,7 @@
             {% for post in post_data %}
             <div>
                 <hr>
-<<<<<<< HEAD
-                <p class="username">{{ post.sender_name }} :  <span class="emotion_class">{{ post.get_emotion_display }}</span></p>
-=======
                 <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.emotion }}</span></p>
->>>>>>> origin/main
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
