@@ -77,6 +77,14 @@ A+つくばは
                 <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus></textarea> 
                 <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button" id="submit_message" value="投稿する" />
             </form>
+            <!--! temp -->
+            <form action="{% url 'create_threads' %}" method="POST">
+                {% csrf_token %} 
+                スレタイ : <input type="text" id="thread_title" autocomplete="off" value="名無し" name="title" />
+                <br>
+                <input type="submit"  value="スレ作成" />
+            </form>
+            <!--! temp -->
         </div>
     </div>
     <script src = "{% static 'board/ITFchk.js' %}"></script>
