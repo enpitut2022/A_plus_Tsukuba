@@ -9,6 +9,19 @@ class Index(ListView):
     def get(self, request, *args, **kwargs):
         return redirect("threads/1/")
 
+class CreateThreadView(ListView):
+    model = Thread
+    def post(self, request, *args, **kwargs):
+        title = self.request.POST.get("title", None)
+
+        # 同名のスレタイがなければ
+        t = self.model.objects.filter(title=title).values()
+        if not t:
+            self.model.objects.create(title=title)
+            t = self.model.objects.filter(title=title).values()
+        # 同名のスレがあればそこへ移動        
+        return redirect(f"/threads/{t[0]['id']}/")
+
 class ThreadView(ListView):
     template_name = "board/Chat.html"
     model = Post
