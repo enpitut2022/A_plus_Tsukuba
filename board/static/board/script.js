@@ -7,10 +7,8 @@ function init(){
     const array = new Array(emotion_length) /*array is emotion array*/ 
     for (let i = 0; i < emotion_length; i++) {
         array[i] = emotion[i];
-        console.log(array[i]);
     }
     
-    console.log(emotion.length);
     for (let i = 0; i < emotion_length; i++){
         let emotion_str = array[i].textContent;       
         /*
@@ -39,16 +37,15 @@ function init(){
         }
     }
 
-    let thread_value = document.getElementById("thread_num").value;
-    console.log(thread_value);
-    let tmp = 1;
-    let all_thread = document.getElementsByClassName("side_url"); /*all_thread is array*/
-    if(thread_value == tmp){
-        // console.log(thread_id);
-        
-        console.log(all_thread.length);
+    const thread_value = document.getElementById("threadID").value;
+    const all_thread = document.getElementsByClassName("side_url"); /*all_thread is array*/
 
+    for(let i = 0; i < all_thread.length; i++){
+        console.log(all_thread[i].dataset.id);
         
+        if(all_thread[i].dataset.id === thread_value){
+            all_thread[i].classList.add("now_url");
+        }
     }
 
     

@@ -3,7 +3,6 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta content="{{ thread_id}}" />
     <title>A+ つくば</title>
     <link rel="stylesheet" href="{% static 'board/style.css' %}">
     <script src = "{% static 'board/script.js' %}"></script>
@@ -22,10 +21,10 @@
                 <b>夜22時</b>に集まろう！
             </p>
         </div>
-        
+        <input  id="threadID" type ="hidden" value="{{ thread_id }}"/>
         <div id="left_bottom">
             {% for thread in thread_data %}
-            <p class="side_url side_url_1" >
+            <p class="side_url" data-id="{{ thread.pk }}">
                 <a href="{% url 'threads' thread.pk %}">{{ thread.title }}</a>
             </p>
             {% endfor %}
@@ -43,7 +42,7 @@
             {% for post in post_data %}
             <div>
                 <hr>
-                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.emotion }}</span></p>
+                <p class="username">{{ post.sender_name }}<span class="emotion_class">{{ post.emotion }}</span></p>
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
