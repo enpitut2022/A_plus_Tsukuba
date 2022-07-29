@@ -2,6 +2,12 @@ from django.db import models
 from django.utils import timezone
 import uuid
 
+class Thread(models.Model):
+    title    = models.CharField(verbose_name='スレタイ',blank=False, null=False, max_length=150)
+    created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
+    def __str__(self):
+        return self.title
+
 class Post(models.Model):
     EMOTION = (
         (0, "非常事態(´•_•; )"),  # (DB値, 読みやすい値)
@@ -16,7 +22,10 @@ class Post(models.Model):
     sender_name = models.CharField(verbose_name='投稿者名(匿名)', max_length=40)
     text = models.TextField(verbose_name='本文')
     created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
+    thread  = models.ForeignKey(Thread, on_delete=models.CASCADE, default=0)
     emotion = models.IntegerField(choices=EMOTION, default=0)
 
     def __str__(self):
         return self.sender_name
+
+

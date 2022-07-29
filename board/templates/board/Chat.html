@@ -20,6 +20,15 @@
                 <b>夜22時</b>に集まろう！
             </p>
         </div>
+
+        <div id="left_bottom">
+            {% for thread in thread_data %}
+            <p class="side_url side_url_1">
+                <a href="{% url 'threads' thread.pk %}">{{ thread.title }}</a>
+            </p>
+            {% endfor %}
+        </div>
+        
     </div>
     <div id="right">
     <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
@@ -32,7 +41,7 @@
             {% for post in post_data %}
             <div>
                 <hr>
-                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.get_emotion_display }}</span></p>
+                <p class="username">名前：  {{ post.sender_name }}<span class="emotion_class">{{ post.emotion }}</span></p>
                 <p class="content">{{ post.text | linebreaksbr}}</p>
             </div>
             {% endfor %}
@@ -49,7 +58,7 @@ A+つくばは
         </div>
 
         <div id="form">
-            <form action="/" method="POST">
+            <form action="{% url 'threads' thread_id %}" method="POST">
                 {% csrf_token %} 
                 Name : <input type="text" id="input_name" autocomplete="off" value="名無し" name="username" autofocus />
                 <!-- added -->
