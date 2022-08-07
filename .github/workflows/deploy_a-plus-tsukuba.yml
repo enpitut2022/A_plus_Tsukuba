@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'a-plus-tsukuba'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DD6999FA8A164EE5B81BF480CF40B636 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED4A15AEEDD64EB9BBD1D1B6F9B94667 }}
