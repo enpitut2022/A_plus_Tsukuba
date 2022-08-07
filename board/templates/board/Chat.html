@@ -1,114 +1,113 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>A+ つくば</title>
-    <link rel="stylesheet" href="{% static 'board/style.css' %}">
-    <script src = "{% static 'board/script.js' %}"></script>
-    
-</head>
-<body>
-    <div id="left">
-        <div id="left_top">
-            <h1><img src="{% static 'board/enpitA+.png' %}" width="110" height="110" alt="art"></h1>
-            <p class="side_msg_1">
-                課題をみんなで！
-            </p>
-        </div>
-        <div id="left_rest">
-            <p class="side_msg_2">
-                <b>夜22時</b>に集まろう！
-            </p>
-        </div>
-        <div id="left_thread">
-            <p class="side_msg_3">
-                <b>スレッド一覧</b>
-            </p>
-        </div>
-        <input  id="threadID" type ="hidden" value="{{ thread_id }}"/>
-        <div id="left_scroll">
-        <div id="left_bottom">
-            {% for thread in thread_data %}
-            <p class="side_url" data-id="{{ thread.pk }}">
-                <a href="{% url 'threads' thread.pk %}">{{ thread.title }}</a>
-            </p>
-            {% endfor %}
-        </div>
-        </div>
-        <!-- added thread sakusei -->
-        <div id="left_thread_add">
-            <p class="side_msg_4">
-                <form action="{% url 'create_threads' %}" method="POST">
-                    {% csrf_token %} 
-                    スレタイ : <input type="text" id="thread_title" autocomplete="off" value="無題" name="title" />
-                    <br>
-                    <input type="submit"  class="submit_button btn2" id="submit_message" value="スレ作成"  />
-                </form>
-            </p>
-        </div>
-        
-    </div>
-    <div id="right">
-    <!-- エンターキーによるボタン押下を行うために、<button>ではなく<form>と<input type="submit">を使用。
-    ボタン押下(=submit)時にページリロードが行われないように、onsubmitの設定の最後に"return false;"を追加。-->
-        <div id="log_list">
-        <div class="em_view">
-            非常事態宣言数：<span class="em_count">{{ em_count }}</span>
-        </div>
-            <ul id="list_message"></ul>
-            {% for post in post_data %}
-            <div>
-                <hr>
-                <p class="username">{{ post.sender_name }}<span class="emotion_class">{{ post.emotion }}</span></p>
-                <p class="content">{{ post.text | linebreaksbr}}</p>
-            </div>
-            {% endfor %}
-            <div>
-                <hr>
-                <p class="username">
-A+つくばは
-大学の課題を効率よく十分な品質で提出することができない
-(A+が取れない!!)問題を解決したい
-同じ講義に知り合いが少ない筑波大生向けの
-筑波大生専用の匿名学習支援SNS です。
-                </p>
-            </div>
-        </div>
+<!doctype html>
+<html lang="ja">
 
-        <div id="form">
-            <form action="{% url 'threads' thread_id %}" method="POST">
-                {% csrf_token %} 
-                Name : <input type="text" id="input_name" autocomplete="off" value="名無し" name="username" autofocus />
-                <!-- added -->
-                <!-- 緊急度 :  -->
-                <select name="emotion_type">
-                    <option value="0">非常事態(´•_•; )</option>
-                    <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
-                    <option value="2">助かった(*´▽`人)</option>
-                    <option value="3">提案(^^)/~~~</option>
-                    <option value="4">よしよし('ω')</option>
-                    <option value="5">大丈夫？( *´艸｀)</option>
-                </select>
-                <!-- added -->
-                <input type="hidden" id="thread_num" value="1" />
-                <br>
-                <textarea class="row-5" type="text" id="input_message" autocomplete="off" name="message" autofocus placeholder="
-質問例)display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
-回答例)私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea> 
-                <input type="submit" src="{% static 'board/logo.jpeg' %}" class="submit_button btn1" id="submit_message" value="投稿する" />
-            </form>
-            <!--! temp -->
-            <!-- <form action="{% url 'create_threads' %}" method="POST">
-                {% csrf_token %} 
-                スレタイ : <input type="text" id="thread_title" autocomplete="off" value="名無し" name="title" />
-                <br>
-                <input type="submit"  class="submit_button btn2" id="submit_message" value="スレ作成"  />
-            </form> -->
-            <!--! temp -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'board/chat.css' %}">
+  <title>A+ つくば</title>
+</head>
+
+<body class="bg-light">
+  <input type="hidden" id="thread_num" value="{{ thread_id }}" />
+  <div class="fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(119, 0, 128);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'board/enpit.png' %}" alt="" width="30" height="30" class="d-inline-block align-text-top">
+        A+つくば
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="#">スレッド一覧</a>
+          <a class="nav-link" href="#">A+つくばとは？</a>
         </div>
+      </div>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="スレッド名を入力..." aria-label="Search" autofocus>
+        <button class="btn btn-success sm" type="submit">Search</button>
+      </form>
     </div>
+  </nav></div>
+
+  <div id="main_container" class="container-fluid">
+    <div class="row">
+      <div class="col-md-7 bg-light">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">スレッド一覧</a></li>
+            <li class="breadcrumb-item active" aria-current="page">スレッド名</li>
+          </ol>
+        </nav>
+        {% for post in post_data %}
+        <div class="row">
+          <div class="col">
+            <h6>{{ post.sender_name }} <span class="badge bg-secondary">{{ post.emotion }}</span></h6>
+            <p class="lead">{{ post.text | linebreaksbr}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="col-md-5 bg-light">
+        <div class="side-form">
+            <form action="{% url 'threads' thread_id %}" method="POST">
+              {% csrf_token %}
+              名前 :
+              <input type="text" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
+                autofocus />
+              気持ち :
+              <select name="emotion_type" class="form-select">
+                <option value="0">非常事態(´•_•; )</option>
+                <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
+                <option value="2">助かった(*´▽`人)</option>
+                <option value="3">提案(^^)/~~~</option>
+                <option value="4">よしよし('ω')</option>
+                <option value="5">大丈夫？( *´艸｀)</option>
+              </select>
+              本文 :
+              <textarea id="main_textarea" class="form-control" rows="15" type="text" id="input_message" autocomplete="off" name="message"
+                placeholder="
+質問例)
+display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
+
+回答例)
+私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
+              <input type="submit" src="{% static 'board/logo.jpeg' %}" class="form-control btn btn-primary"
+                id="submit_message" value="投稿する" />
+            </form>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITF checking -->
     <script src = "{% static 'board/ITFchk.js' %}"></script>
     <script>isITF();</script>
+
+  <!-- Bootstrap -->
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
 </body>
+
 </html>
