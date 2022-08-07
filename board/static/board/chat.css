@@ -1,4 +1,19 @@
 .side-form {
+    /* スクロールした時についてくる設定 */
     position: sticky;
     top: 64px;
+}
+
+#main_container {
+    /* モバイル */
+    /* nav-barぶん下にずらす設定 */
+    margin-top:100px;
+}
+
+@media (min-width: 768px) {
+  /* md 以上の画面 */
+  #main_container {
+    /* nav-barぶん下にずらす設定 */
+    margin-top:64px;
   }
+}

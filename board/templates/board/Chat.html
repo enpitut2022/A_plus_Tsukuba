@@ -34,13 +34,13 @@
         </div>
       </div>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="スレッド名を入力..." aria-label="Search">
+        <input class="form-control me-2" type="search" placeholder="スレッド名を入力..." aria-label="Search" autofocus>
         <button class="btn btn-success sm" type="submit">Search</button>
       </form>
     </div>
   </nav></div>
 
-  <div class="container-fluid" style="margin-top:64px;">
+  <div id="main_container" class="container-fluid">
     <div class="row">
       <div class="col-md-7 bg-light">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -75,8 +75,7 @@
                 <option value="5">大丈夫？( *´艸｀)</option>
               </select>
               本文 :
-              <textarea class="form-control" rows="15" type="text" id="input_message" autocomplete="off" name="message"
-                autofocus
+              <textarea id="main_textarea" class="form-control" rows="15" type="text" id="input_message" autocomplete="off" name="message"
                 placeholder="
 質問例)
 display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
