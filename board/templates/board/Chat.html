@@ -52,14 +52,176 @@
         {% for post in post_data %}
         <div class="row">
           <div class="col">
-            <h6>{{ post.sender_name }} <span class="badge bg-secondary">{{ post.emotion }}</span></h6>
+            <h6>{{ post.sender_name }} <span class="badge bg-secondary">{{ post.emotion }}</span>
+              
+              
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#a{{ post.post_id }}" aria-expanded="false" aria-controls="collapseExample">
+                  このスレッドを表示する．
+                </button>
+              
+              
+              
+             
+            </h6>
             <p class="lead">{{ post.text | linebreaksbr}}</p>
           </div>
+          <div class="collapse" id="a{{ post.post_id }}">
+            <div class="card card-body bg-light">
+              <div class="rows">
+                <div class="cols">
+                <p class="username">はりぼて太郎<span class="badge bg-secondary">uo~</span></p>
+                <p class="lead">あああああああああああああああああああああああ
+                  ああああああああああああああああああああああああああああ<br>
+                  あああああああああああああああああああああああああああああ
+                </p>
+              </div>
+              </div>
+              <div class="rows">
+                <div class="cols">
+                <p class="username">はりぼて太郎<span class="badge bg-secondary">uo~</span></p>
+                <p class="lead">あああああああああああああああああああああああ
+                  ああああああああああああああああああああああああああああ<br>
+                  あああああああああああああああああああああああああああああ
+                </p>
+              </div>
+              </div>              
+              <div class="rows">
+                <div class="cols">
+                <p class="username">はりぼて太郎<span class="badge bg-secondary">uo~</span></p>
+                <p class="lead">あああああああああああああああああああああああ
+                  ああああああああああああああああああああああああああああ<br>
+                  あああああああああああああああああああああああああああああ
+                </p>
+              </div>
+              </div>
+              <!-- 返信用のモーダル-->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyModal" data-bs-whatever="@mdo">このスレッドに返信する．</button>
+                <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">reply</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="side-form">
+                          <form action="{% url 'threads' thread_id %}" method="POST">
+                            {% csrf_token %}
+                            名前 :
+                            <input type="text" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
+                              autofocus />
+                            気持ち :
+                            <select name="emotion_type" class="form-select">
+                              <option value="0">非常事態(´•_•; )</option>
+                              <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
+                              <option value="2">助かった(*´▽`人)</option>
+                              <option value="3">提案(^^)/~~~</option>
+                              <option value="4">よしよし('ω')</option>
+                              <option value="5">大丈夫？( *´艸｀)</option>
+                            </select>
+                            本文 :
+                            <textarea id="main_textarea" class="form-control" rows="15" type="text" id="input_message" autocomplete="off" name="message"
+                              placeholder="
+  質問例)
+  display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
+  
+  回答例)
+  私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
+                            <br>
+                            <input type="submit" src="{% static 'board/logo.jpeg' %}" class="form-control btn btn-primary"
+                              id="submit_message" value="投稿する" />
+                          </form>
+                      </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+
         </div>
         {% endfor %}
       </div>
       <div class="col-md-5 bg-light">
-        <div class="side-form">
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">返信</button>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">Recipient:</label>
+                          <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Message:</label>
+                          <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="side-form">
+                        <form action="{% url 'threads' thread_id %}" method="POST">
+                          {% csrf_token %}
+                          名前 :
+                          <input type="text" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
+                            autofocus />
+                          気持ち :
+                          <select name="emotion_type" class="form-select">
+                            <option value="0">非常事態(´•_•; )</option>
+                            <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
+                            <option value="2">助かった(*´▽`人)</option>
+                            <option value="3">提案(^^)/~~~</option>
+                            <option value="4">よしよし('ω')</option>
+                            <option value="5">大丈夫？( *´艸｀)</option>
+                          </select>
+                          本文 :
+                          <textarea id="main_textarea" class="form-control" rows="15" type="text" id="input_message" autocomplete="off" name="message"
+                            placeholder="
+質問例)
+display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
+
+回答例)
+私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
+                          <br>
+                          <input type="submit" src="{% static 'board/logo.jpeg' %}" class="form-control btn btn-primary"
+                            id="submit_message" value="投稿する" />
+                        </form>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+<!--       <div class="side-form">
             <form action="{% url 'threads' thread_id %}" method="POST">
               {% csrf_token %}
               名前 :
@@ -88,8 +250,16 @@ display 関数を改良，表示方法を工夫し，2 分木の構造がより�
         </div>
       </div>
       </div>
-    </div>
+    </div> -->
   </div>
+
+  <div>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    style="position:fixed; bottom: 20px; right: 20px;">
+    投稿
+  </button>
+</div>
+
 
   <!-- ITF checking -->
     <script src = "{% static 'board/ITFchk.js' %}"></script>
