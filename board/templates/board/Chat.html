@@ -57,14 +57,27 @@
               <div v-for="msg in message.data" :key="msg.post_id">
                 <h6>[[ msg.sender_name ]] <span class="badge bg-secondary">[[ msg.emotion ]]</span>
                   <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#a{{ post.post_id }}" aria-expanded="false" aria-controls="collapseExample">
+                    :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample">
                     このスレッドを表示する．
                   </button>
                 </h6>
                 <p class="lead">[[ msg.text ]]</p>
-                <div class="collapse" id="a{{ post.post_id }}">
+                <div class="collapse" :id="'a' + msg.post_id">
                   <div class="card card-body bg-light">
+
                     <div class="rows">
+                      <div class="cols">
+                        <p class="username"><span class="badge bg-secondary">   </span></p>
+                        <p class="lead">あ<br>
+                          あ
+                        </p>
+                      </div>
+
+                    </div>
+
+
+
+                    <!-- <div class="rows">
                       <div class="cols">
                         <p class="username">はりぼて太郎<span class="badge bg-secondary">uo~</span></p>
                         <p class="lead">あああああああああああああああああああああああ
@@ -72,25 +85,8 @@
                           あああああああああああああああああああああああああああああ
                         </p>
                       </div>
-                    </div>
-                    <div class="rows">
-                      <div class="cols">
-                        <p class="username">はりぼて太郎<span class="badge bg-secondary">uo~</span></p>
-                        <p class="lead">あああああああああああああああああああああああ
-                          ああああああああああああああああああああああああああああ<br>
-                          あああああああああああああああああああああああああああああ
-                        </p>
-                      </div>
-                    </div>
-                    <div class="rows">
-                      <div class="cols">
-                        <p class="username">はりぼて太郎<span class="badge bg-secondary">uo~</span></p>
-                        <p class="lead">あああああああああああああああああああああああ
-                          ああああああああああああああああああああああああああああ<br>
-                          あああああああああああああああああああああああああああああ
-                        </p>
-                      </div>
-                    </div>
+                    </div> -->
+                   
                     <!-- 返信用のモーダル-->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyModal"
                       data-bs-whatever="@mdo">このスレッドに返信する．</button>
