@@ -18,3 +18,17 @@ const test_api = new Vue({
           .then(response => (this.message = response))
       }
 })
+
+// const less = `<div class="row">
+// <div class="col">
+//   <div id="vue_msg" class="lead">
+//     [[ message ]]
+//   </div>
+//   <div id="api_test" class="content">
+//     <div v-for="msg in message.data" :key="msg.post_id">
+//       <div>[[ msg.sender_name ]]</div>
+//       <div>[[ msg.text ]]</div>
+//     </div>
+//   </div>
+// </div>
+// </div>`

@@ -41,19 +41,8 @@
   </nav></div>
 
   <div id="main_container" class="container-fluid">
-    <!-- Vue.js test-->
     <div class="row">
-      <div class="col">
-        <div id="vue_msg" class="lead">
-          [[ message ]]
-        </div>
-        <div id="api_test" class="content">
-          [[ message ]]
-        </div>
-      </div>
-    </div>
-    <!-- -->
-    <div class="row">
+
       <div class="col-md-7 bg-light">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -61,10 +50,21 @@
             <li class="breadcrumb-item active" aria-current="page">スレッド名</li>
           </ol>
         </nav>
-        {% for post in post_data %}
+
+
+
+
+
+        <!-- {% for post in post_data %} -->
         <div class="row">
           <div class="col">
-            <h6>{{ post.sender_name }} <span class="badge bg-secondary">{{ post.emotion }}</span>
+
+
+            <div id="api_test" class="content">
+            <div v-for="msg in message.data" :key="msg.post_id">
+            <h6>[[ msg.sender_name ]] <span class="badge bg-secondary">[[ msg.emotion ]]</span>
+
+            <!-- <h6>{{ post.sender_name }} <span class="badge bg-secondary">{{ post.emotion }}</span> -->
               
               
                 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#a{{ post.post_id }}" aria-expanded="false" aria-controls="collapseExample">
@@ -75,8 +75,13 @@
               
              
             </h6>
-            <p class="lead">{{ post.text | linebreaksbr}}</p>
-          </div>
+            <!-- <p class="lead">{{ post.text | linebreaksbr}}</p> -->
+            <p class="lead">[[ msg.text ]]</p>
+          
+        
+
+
+
           <div class="collapse" id="a{{ post.post_id }}">
             <div class="card card-body bg-light">
               <div class="rows">
@@ -156,8 +161,19 @@
 
 
         </div>
-        {% endfor %}
+        <!-- {% endfor %} -->
       </div>
+      </div>
+      </div>
+
+
+
+
+
+
+
+
+
       <div class="col-md-5 bg-light">
         <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">返信</button>
 
@@ -263,6 +279,7 @@ display 関数を改良，表示方法を工夫し，2 分木の構造がより�
       </div>
       </div>
     </div> -->
+  </div>
   </div>
 
   <div>
