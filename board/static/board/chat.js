@@ -9,12 +9,13 @@ const vue_msg = new Vue({
 const test_api = new Vue({
     el: "#api_test",
     data: {
-        message: null
+        message: null,
+        thread_id: document.getElementById('thread_num').value
     },
     delimiters: ['[[', ']]'],
     mounted () {
         axios
-          .get('/api')
+          .get(`/api/get_subthreads?thread_id=${this.thread_id}`)
           .then(response => (this.message = response))
       }
 })
