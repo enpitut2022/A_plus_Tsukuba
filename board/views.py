@@ -9,18 +9,6 @@ class Index(ListView):
     def get(self, request, *args, **kwargs):
         return redirect("threads/1/")
 
-class CreateThreadView(ListView):
-    model = Thread
-    def post(self, request, *args, **kwargs):
-        title = self.request.POST.get("title", None)
-
-        # 同名のスレタイがなければ
-        t = self.model.objects.filter(title=title).values()
-        if not t:
-            self.model.objects.create(title=title)
-            t = self.model.objects.filter(title=title).values()
-        # 同名のスレがあればそこへ移動        
-        return redirect(f"/threads/{t[0]['id']}/")
 
 class ThreadView(ListView):
     template_name = "board/Chat.html"
@@ -37,15 +25,8 @@ class ThreadView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        em_count = Post.objects.filter(emotion=0, thread_id = self.kwargs['thread_id']).count()
-        context["em_count"] = em_count
-        thread_posts = Post.objects.filter(thread_id = self.kwargs['thread_id']).order_by('-created_at').values()
-        for post in thread_posts:
-            post['emotion'] = Post.EMOTION[post['emotion']][1]
-        context['post_data'] = thread_posts
-        threads = Thread.objects.all()
-        context['thread_data'] = threads.order_by('-created_at')
-        context['thread_id'] = self.kwargs['thread_id']
-        
-        # self.kwargs['thread_id']
+        thread_id = self.kwargs['thread_id']
+        thread_title = Thread.objects.filter(id = thread_id).values()[0]["title"]
+        context['thread_title'] = thread_title
+        context['thread_id'] = thread_id
         return context
