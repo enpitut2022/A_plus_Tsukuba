@@ -10,7 +10,7 @@ const test_api = new Vue({
     el: "#api_test",
     data: {
         message: null,
-        child_message: null,
+        child_message: {},
         thread_id: document.getElementById('thread_num').value,
         post_id: null
     },
@@ -20,17 +20,16 @@ const test_api = new Vue({
         async fetch_subthreads() {
             let res = await axios.get(`/api/get_subthreads?thread_id=${this.thread_id}`)
             console.table(res.data);
-            // 非同期関数
             this.message = res;
         },
         // 子スレを取得する関数
         async child_threads(post_id) {
-            this.child_message = [];
+            this.$set(this.child_message, post_id, []);
             let child_res = await axios.get(`/api/get_replies?post_id=${post_id}`)
             console.log('called child_threads');
             console.table(child_res.data);
 
-            this.child_message = child_res.data || [];
+            this.$set(this.child_message, post_id, child_res.data || []);
         }
     },
     mounted () {

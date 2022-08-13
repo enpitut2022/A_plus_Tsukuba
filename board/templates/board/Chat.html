@@ -65,20 +65,21 @@
                 <p class="lead">[[ msg.text ]]</p>
                 <div class="collapse" :id="'a' + msg.post_id">
                   <div class="card card-body bg-light">
-
+  
                     <div class="rows">
                       <div class="cols">
-                        <div v-for="reply in child_message" :key="reply.reply_id">
-                          <p class="username">[[ reply.sender_name ]]<span class="badge bg-secondary">[[ reply.emotion ]]</span></p>
+                        <div v-for="reply in child_message[msg.post_id]" :key="reply.reply_id">
+                          <p class="username">[[ reply.sender_name ]]<span class="badge bg-secondary">[[ reply.emotion
+                              ]]</span></p>
                           <p class="lead">[[reply.text]]<br></p>
                         </div>
-                        </div>
-
                       </div>
-
-
-
-                      <!-- <div class="rows">
+  
+                    </div>
+  
+  
+  
+                    <!-- <div class="rows">
                       <div class="cols">
                         <p class="username">はりぼて太郎<span class="badge bg-secondary">uo~</span></p>
                         <p class="lead">あああああああああああああああああああああああ
@@ -87,53 +88,51 @@
                         </p>
                       </div>
                     </div> -->
-
-                      <!-- 返信用のモーダル-->
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyModal"
-                        data-bs-whatever="@mdo">このスレッドに返信する．</button>
-                      <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">reply</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <div class="side-form">
-                                <form action="{% url 'threads' thread_id %}" method="POST">
-                                  {% csrf_token %}
-                                  名前 :
-                                  <input type="text" id="input_name" class="form-control" autocomplete="off" value="名無し"
-                                    name="username" autofocus />
-                                  気持ち :
-                                  <select name="emotion_type" class="form-select">
-                                    <option value="0">非常事態(´•_•; )</option>
-                                    <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
-                                    <option value="2">助かった(*´▽`人)</option>
-                                    <option value="3">提案(^^)/~~~</option>
-                                    <option value="4">よしよし('ω')</option>
-                                    <option value="5">大丈夫？( *´艸｀)</option>
-                                  </select>
-                                  本文 :
-                                  <textarea id="main_textarea" class="form-control" rows="15" type="text"
-                                    id="input_message" autocomplete="off" name="message"
-                                    placeholder="
+  
+                    <!-- 返信用のモーダル-->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyModal"
+                      data-bs-whatever="@mdo">このスレッドに返信する．</button>
+                    <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">reply</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="side-form">
+                              <form action="{% url 'threads' thread_id %}" method="POST">
+                                {% csrf_token %}
+                                名前 :
+                                <input type="text" id="input_name" class="form-control" autocomplete="off" value="名無し"
+                                  name="username" autofocus />
+                                気持ち :
+                                <select name="emotion_type" class="form-select">
+                                  <option value="0">非常事態(´•_•; )</option>
+                                  <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
+                                  <option value="2">助かった(*´▽`人)</option>
+                                  <option value="3">提案(^^)/~~~</option>
+                                  <option value="4">よしよし('ω')</option>
+                                  <option value="5">大丈夫？( *´艸｀)</option>
+                                </select>
+                                本文 :
+                                <textarea id="main_textarea" class="form-control" rows="15" type="text"
+                                  id="input_message" autocomplete="off" name="message"
+                                  placeholder="
   質問例)
   display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
   
   回答例)
   私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
-                                  <br>
-                                  <input type="submit" src="{% static 'board/logo.jpeg' %}"
-                                    class="form-control btn btn-primary" id="submit_message" value="投稿する" />
-                                </form>
-                              </div>
+                                <br>
+                                <input type="submit" src="{% static 'board/logo.jpeg' %}"
+                                  class="form-control btn btn-primary" id="submit_message" value="投稿する" />
+                              </form>
                             </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                           </div>
                         </div>
                       </div>
@@ -143,88 +142,89 @@
               </div>
             </div>
           </div>
-          <div class="col-md-5 bg-light">
+        </div>
+        <div class="col-md-5 bg-light">
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="side-form">
-                      <form action="{% url 'threads' thread_id %}" method="POST">
-                        {% csrf_token %}
-                        名前 :
-                        <input type="text" id="input_name" class="form-control" autocomplete="off" value="名無し"
-                          name="username" autofocus />
-                        気持ち :
-                        <select name="emotion_type" class="form-select">
-                          <option value="0">非常事態(´•_•; )</option>
-                          <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
-                          <option value="2">助かった(*´▽`人)</option>
-                          <option value="3">提案(^^)/~~~</option>
-                          <option value="4">よしよし('ω')</option>
-                          <option value="5">大丈夫？( *´艸｀)</option>
-                        </select>
-                        本文 :
-                        <textarea id="main_textarea" class="form-control" rows="15" type="text" id="input_message"
-                          autocomplete="off" name="message"
-                          placeholder="
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="side-form">
+                    <form action="{% url 'threads' thread_id %}" method="POST">
+                      {% csrf_token %}
+                      名前 :
+                      <input type="text" id="input_name" class="form-control" autocomplete="off" value="名無し"
+                        name="username" autofocus />
+                      気持ち :
+                      <select name="emotion_type" class="form-select">
+                        <option value="0">非常事態(´•_•; )</option>
+                        <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
+                        <option value="2">助かった(*´▽`人)</option>
+                        <option value="3">提案(^^)/~~~</option>
+                        <option value="4">よしよし('ω')</option>
+                        <option value="5">大丈夫？( *´艸｀)</option>
+                      </select>
+                      本文 :
+                      <textarea id="main_textarea" class="form-control" rows="15" type="text" id="input_message"
+                        autocomplete="off" name="message"
+                        placeholder="
 質問例)
 display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
 
 回答例)
 私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
-                        <br>
-                        <input type="submit" src="{% static 'board/logo.jpeg' %}" class="form-control btn btn-primary"
-                          id="submit_message" value="投稿する" />
-                      </form>
-                    </div>
+                      <br>
+                      <input type="submit" src="{% static 'board/logo.jpeg' %}" class="form-control btn btn-primary"
+                        id="submit_message" value="投稿する" />
+                    </form>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-            style="position:fixed; bottom: 20px; right: 20px;">
-            投稿
-          </button>
-        </div>
+      <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          style="position:fixed; bottom: 20px; right: 20px;">
+          投稿
+        </button>
+      </div>
 
 
-        <!-- ITF checking -->
-        <script src="{% static 'board/ITFchk.js' %}"></script>
-        <script>isITF();</script>
+      <!-- ITF checking -->
+      <script src="{% static 'board/ITFchk.js' %}"></script>
+      <script>isITF();</script>
 
-        <!-- Bootstrap -->
-        <!-- Optional JavaScript; choose one of the two! -->
+      <!-- Bootstrap -->
+      <!-- Optional JavaScript; choose one of the two! -->
 
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-          crossorigin="anonymous"></script>
+      <!-- Option 1: Bootstrap Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
-        <!-- Option 2: Separate Popper and Bootstrap JS -->
-        <!--
+      <!-- Option 2: Separate Popper and Bootstrap JS -->
+      <!--
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 
-        <!-- Axios -->
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <!-- Axios -->
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-        <!-- Vue.js DEV VERSION-->
-        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-        <script src="{% static 'board/chat.js' %}"></script>
+      <!-- Vue.js DEV VERSION-->
+      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+      <script src="{% static 'board/chat.js' %}"></script>
 </body>
 
 </html>
