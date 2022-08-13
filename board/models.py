@@ -19,8 +19,8 @@ class Post(models.Model):
     )
 
     post_id = models.UUIDField(verbose_name='投稿者id', primary_key=True, default=uuid.uuid4, editable=False)
-    sender_name = models.CharField(verbose_name='投稿者名(匿名)', max_length=40)
-    text = models.TextField(verbose_name='本文')
+    sender_name = models.CharField(verbose_name='投稿者名(匿名)', max_length=40, blank=False)
+    text = models.TextField(verbose_name='本文', blank=False, max_length=500)
     created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
     thread  = models.ForeignKey(Thread, on_delete=models.CASCADE, default=0)
     emotion = models.IntegerField(choices=EMOTION, default=0)
@@ -40,8 +40,8 @@ class Reply(models.Model):
 
     post_id = models.ForeignKey(Post, on_delete=models.CASCADE, to_field="post_id")
     reply_id = models.UUIDField(verbose_name='返信id', primary_key=True, default=uuid.uuid4, editable=False)
-    sender_name = models.CharField(verbose_name='投稿者名(匿名)', max_length=40)
-    text = models.TextField(verbose_name='本文')
+    sender_name = models.CharField(verbose_name='投稿者名(匿名)', max_length=40, blank=False)
+    text = models.TextField(verbose_name='本文', blank=False, max_length=500)
     created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
     emotion = models.IntegerField(choices=EMOTION, default=0)
 
