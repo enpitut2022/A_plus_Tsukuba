@@ -26,6 +26,24 @@ class Post(models.Model):
     emotion = models.IntegerField(choices=EMOTION, default=0)
 
     def __str__(self):
-        return self.sender_name
+        return str(self.post_id)
 
+class Reply(models.Model):
+    EMOTION = (
+        (0, "非常事態(´•_•; )"),  # (DB値, 読みやすい値)
+        (1, "じっくり(-ω-;)ｳｰﾝ"),
+        (2, "助かった(*´▽`人)"),
+        (3, "提案(^^)/~~~"),
+        (4, "よしよし('ω')"),
+        (5, "大丈夫？( *´艸｀)"),
+    )
 
+    post_id = models.ForeignKey(Post, on_delete=models.CASCADE, to_field="post_id")
+    reply_id = models.UUIDField(verbose_name='返信id', primary_key=True, default=uuid.uuid4, editable=False)
+    sender_name = models.CharField(verbose_name='投稿者名(匿名)', max_length=40)
+    text = models.TextField(verbose_name='本文')
+    created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
+    emotion = models.IntegerField(choices=EMOTION, default=0)
+
+    def __str__(self):
+        return str(self.reply_id)
