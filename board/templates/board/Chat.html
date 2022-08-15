@@ -62,10 +62,10 @@
                     このスレッドを表示する．
                   </button>
                 </h6>
-                <p class="lead"><div style="white-space: pre-wrap;" v-text="msg.text" />
+                <p class="lead">[[ msg.text ]]
                   <small><small>
                       投稿日: [[ formatTimeString(msg.created_at) ]]
-                  </small></small>
+                    </small></small>
                 </p>
                 <div class="collapse" :id="'a' + msg.post_id">
                   <div class="card card-body bg-light">
