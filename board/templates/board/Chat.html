@@ -191,7 +191,7 @@ display 関数を改良，表示方法を工夫し，2 分木の構造がより�
 
       <div>
         <!-- 元々あったコード↓ -->
-        ∏
+        
         <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
           style="position:fixed; bottom: 20px; right: 20px;">
           投稿
@@ -245,10 +245,11 @@ display 関数を改良，表示方法を工夫し，2 分木の構造がより�
       </div> -->
 
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-          aria-controls="offcanvasScrolling">返信する</button>
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+          aria-controls="offcanvasScrolling" style="position:fixed; bottom: 20px; right: 20px;">返信する</button>
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
           id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
 
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           <div class="side-form">
             <form action="{% url 'threads' thread_id %}" method="POST">
               {% csrf_token %}
