@@ -1,5 +1,4 @@
 from concurrent.futures import thread
-from turtle import title
 from django.db import models
 from django.utils import timezone
 import uuid
