@@ -41,12 +41,12 @@ const test_api = new Vue({
 
         getCSS(id) {
             const dict = {
-                0: 'badge badge-pill badge-danger',
-                1: 'badge badge-pill badge-warning',
-                2: 'badge badge-pill badge-success',
-                3: 'badge badge-pill badge-primary',
-                4: `badge badge-pill badge-info`,
-                5: 'badge badge-pill badge-Light',
+                0: 'badge rounded-pill bg-danger',
+                1: 'badge rounded-pill bg-warning',
+                2: 'badge rounded-pill bg-success',
+                3: 'badge rounded-pill bg-primary',
+                4: `badge rounded-pill bg-info`,
+                5: 'badge rounded-pill bg-Light',
             };
 
             return dict[id];
