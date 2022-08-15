@@ -71,3 +71,55 @@ const test_api = new Vue({
         this.fetch_subthreads();
     },
 });
+
+const send_api = new Vue({
+    el: '#send_message',
+    data: {
+        message: null,
+        child_message: {},
+        thread_id: null,
+        post_id: null,
+    },
+    delimiters: ['[[', ']]'],
+    methods: {
+        // メッセージを送信する関数(親スレ作成)
+        async send_message() {
+            console.log("send:ex");
+            axios.defaults.xsrfCookieName = 'csrftoken';
+            axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+            
+            
+            if (!this.post_id) {
+                //post_id 指定なし
+                const endpoint = '/api/post_subthreads';
+                console.log("sub:ex");
+                const res = await axios.post(
+                    endpoint,
+                    {
+                        emotion: 3,
+                        thread: 1,
+                        sender_name: "名無し",
+                        text: "サブスレッド",
+                    }
+                );
+                
+            }else{
+                const endpoint = '/api/post_replies';
+                console.log("child:ex");
+                const res = await axios.post(
+                    endpoint,
+                    {
+                        emotion: 2,
+                        post_id: this.post_id,
+                        sender_name: "名無し",
+                        text: "リプライだよ？",
+                    }
+                );
+            }
+        },
+
+        judge_thread(judge_post_id = null) {
+            this.post_id = judge_post_id;
+        },
+    },
+});
