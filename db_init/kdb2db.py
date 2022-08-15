@@ -1,6 +1,5 @@
 import json
 import sqlite3
-import uu
 import uuid
 
 conn = sqlite3.connect("db.sqlite3")
