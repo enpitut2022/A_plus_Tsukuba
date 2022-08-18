@@ -1,0 +1,26 @@
+{% load static %}
+<input type="hidden" id="thread_num" value="{{ thread_id }}" />
+<div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(119, 0, 128);">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img src="{% static 'board/enpit.png' %}" alt="" width="30" height="30" class="d-inline-block align-text-top">
+              A+つくば
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">スレッド一覧</a>
+                <a class="nav-link" href="#">A+つくばとは？</a>
+              </div>
+            </div>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="スレッド名を入力..." aria-label="Search" autofocus>
+              <button class="btn btn-success sm" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+      </div>
