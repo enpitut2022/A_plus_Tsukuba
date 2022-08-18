@@ -1,3 +1,5 @@
+let post_id_judge = null;
+
 const test_api = new Vue({
     el: '#post_content',
     data: {
@@ -66,11 +68,17 @@ const test_api = new Vue({
             return dict[id];
 
         },
+
+        judge_thread(judge_post_id = null) {
+            post_id_judge = judge_post_id;
+            console.log(post_id_judge);
+        },
     },
     mounted() {
         this.fetch_subthreads();
     },
 });
+
 
 const send_api = new Vue({
     el: '#send_message',
@@ -90,6 +98,7 @@ const send_api = new Vue({
 
             console.log(this.message);
             console.log(this.post_id);
+            this.post_id = post_id_judge;
             
             
             if (!this.post_id) {
@@ -105,6 +114,7 @@ const send_api = new Vue({
                         text: "サブスレッド----------------------------------------------------------------------------------------------------------------------",
                     }
                 );
+                console.log(this.message);
                 
             }else{
                 const endpoint = '/api/post_replies';
@@ -125,11 +135,27 @@ const send_api = new Vue({
         //     this.post_id = judge_post_id;
         // },
 
-        judge_thread(judge_post_id) {
-            // console.log(judge_post_id);
-            // console.log(this.post_id);
-            console.log("judge:ex");
-            this.post_id = judge_post_id;
+        judge_thread(judge_post_id = null) {
+            post_id_judge = judge_post_id;
+            console.log(post_id_judge);
+            
         },
     },
 });
+
+// const post_button = new Vue({
+//     el: '#post_button',
+//     data: {
+//         message: null,
+//         child_message: {},
+//         thread_id: null,
+//         post_id: null,
+//     },
+//     delimiters: ['[[', ']]'],
+//     methods: {
+//         judge_thread(judge_post_id = null) {
+//             post_id_judge = judge_post_id;
+//             console.log(post_id_judge);
+//         },
+//     },
+// });
