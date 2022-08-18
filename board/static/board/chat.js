@@ -20,7 +20,7 @@ const test_api = new Vue({
         async child_threads(post_id) {
             this.$set(this.child_message, post_id, []);
             let child_res = await axios.get(`/api/get_replies?post_id=${post_id}`);
-            console.log('called child_threads');
+            console.log('called child_threads desu');
             console.table(child_res.data);
 
             this.$set(this.child_message, post_id, child_res.data || []);
@@ -87,6 +87,9 @@ const send_api = new Vue({
             console.log("send:ex");
             axios.defaults.xsrfCookieName = 'csrftoken';
             axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
+
+            console.log(this.message);
+            console.log(this.post_id);
             
             
             if (!this.post_id) {
@@ -99,7 +102,7 @@ const send_api = new Vue({
                         emotion: 3,
                         thread: 1,
                         sender_name: "名無し",
-                        text: "サブスレッド",
+                        text: "サブスレッド----------------------------------------------------------------------------------------------------------------------",
                     }
                 );
                 
@@ -118,7 +121,14 @@ const send_api = new Vue({
             }
         },
 
-        judge_thread(judge_post_id = null) {
+        // judge_thread(judge_post_id = null) {
+        //     this.post_id = judge_post_id;
+        // },
+
+        judge_thread(judge_post_id) {
+            // console.log(judge_post_id);
+            // console.log(this.post_id);
+            console.log("judge:ex");
             this.post_id = judge_post_id;
         },
     },
