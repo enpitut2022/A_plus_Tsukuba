@@ -1,5 +1,9 @@
 #main_container {
-    margin-top:64px;
+    /* モバイル */
+    /* nav-barぶん下にずらす設定 */
+    margin-top:100px;
+    /* footer */
+    margin-bottom: 10px;
 }
 
 footer.footer {
