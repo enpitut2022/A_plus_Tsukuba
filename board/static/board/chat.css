@@ -5,9 +5,8 @@
 }
 
 #main_container {
-    /* モバイル */
     /* nav-barぶん下にずらす設定 */
-    margin-top:100px;
+    margin-top:64px;
 }
 
 footer.footer {
@@ -15,12 +14,4 @@ footer.footer {
     color: #fff;
     text-align: center;
     font-size: 7px;
-}
-
-@media (min-width: 768px) {
-  /* md 以上の画面 */
-  #main_container {
-    /* nav-barぶん下にずらす設定 */
-    margin-top:64px;
-  }
 }

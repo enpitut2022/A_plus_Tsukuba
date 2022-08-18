@@ -15,7 +15,7 @@
 </head>
 
 <body class="bg-light">
-  <!-- nav-bar はテンプレ化して入れてください　-->
+  {% include 'header.html' %}
 
   <div id="main_container" class="container-fluid">
     <div id="search_app">
@@ -58,6 +58,8 @@
     </div>
     </div>
   </div>
+
+  {% include 'footer.html' %}
 
   <!-- ITF checking -->
     <script src = "{% static 'board/ITFchk.js' %}"></script>
