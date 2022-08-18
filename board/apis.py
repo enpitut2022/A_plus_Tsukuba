@@ -21,7 +21,7 @@ class search_subjects(ListAPIView):
 
     def get_queryset(self):
         q :str = self.request.query_params.get("q", "")
-        return Subject.objects.filter(name__icontains = q).order_by('code')[:100]
+        return Subject.objects.filter(name__icontains = q).order_by('code')[:500]
 
 class post_subthreads(ListCreateAPIView):
     serializer_class = PostPostSerializer

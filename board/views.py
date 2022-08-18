@@ -1,7 +1,7 @@
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post, Thread
+from .models import Post, Subject, Thread
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, ListView
 
@@ -30,3 +30,7 @@ class ThreadView(ListView):
         context['thread_title'] = thread_title
         context['thread_id'] = thread_id
         return context
+
+class SearchView(ListView):
+    template_name = "board/Search.html"
+    model = Subject
