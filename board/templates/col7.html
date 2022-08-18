@@ -1,10 +1,5 @@
 <div class="col-md-7 bg-light">
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/search/">スレッド検索</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ thread_title }}</li>
-          </ol>
-        </nav>
+        <h2>{{ thread_title }}</h2>
             <div id="post_content" class="content">
               <div v-for="msg in message.data" :key="msg.post_id">
                 <h6>[[ msg.sender_name ]] <span :class="getCSS(msg.emotion)">[[ getText(msg.emotion) ]]</span>
