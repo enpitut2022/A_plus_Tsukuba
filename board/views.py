@@ -1,7 +1,7 @@
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post, Thread
+from .models import Post, Subject, Thread
 from django.shortcuts import redirect
 from django.views.generic import TemplateView, ListView
 
@@ -16,13 +16,6 @@ class ThreadView(ListView):
     #context_object_name = 'post_data'
     ordering = ['-created_at']
 
-    def post(self, request, *args, **kwargs):
-        name = self.request.POST.get("username", None)
-        msg = self.request.POST.get("message", None)
-        emo = self.request.POST.get("emotion_type", "0")
-        self.model.objects.create(sender_name=name, text=msg, emotion=emo, thread_id = self.kwargs['thread_id'])
-        return redirect(f"/threads/{self.kwargs['thread_id']}/")
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         thread_id = self.kwargs['thread_id']
@@ -30,3 +23,7 @@ class ThreadView(ListView):
         context['thread_title'] = thread_title
         context['thread_id'] = thread_id
         return context
+
+class SearchView(ListView):
+    template_name = "board/Search.html"
+    model = Subject

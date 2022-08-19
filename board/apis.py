@@ -16,6 +16,13 @@ class get_replies(ListAPIView):
         post_id = self.request.query_params.get("post_id")
         return Reply.objects.filter(post_id = post_id).order_by('created_at')
 
+class search_subjects(ListAPIView):
+    serializer_class = SearchSubjectSerializer
+
+    def get_queryset(self):
+        q :str = self.request.query_params.get("q", "")
+        return Subject.objects.filter(name__icontains = q).order_by('code')[:500]
+
 class post_subthreads(ListCreateAPIView):
     serializer_class = PostPostSerializer
     queryset = Post.objects.all()

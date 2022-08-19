@@ -1,0 +1,13 @@
+#main_container {
+    /* nav-barぶん下にずらす設定 */
+    margin-top:64px;
+    /* footer */
+    margin-bottom: 10px;
+}
+
+footer.footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    font-size: 7px;
+}

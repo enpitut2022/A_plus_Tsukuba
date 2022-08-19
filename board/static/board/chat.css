@@ -1,19 +1,10 @@
-.side-form {
-    /* スクロールした時についてくる設定 */
-    position: sticky;
-    top: 64px;
+.post_box {
+    padding:10px;
+    background-color: whitesmoke;
+    border-radius: 15px;
 }
 
-#main_container {
-    /* モバイル */
-    /* nav-barぶん下にずらす設定 */
-    margin-top:100px;
-}
-
-@media (min-width: 768px) {
-  /* md 以上の画面 */
-  #main_container {
-    /* nav-barぶん下にずらす設定 */
-    margin-top:64px;
-  }
+.reply_box {
+    margin-top: 7px;
+    margin-left: 5%;
 }

@@ -1,0 +1,59 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+
+<head>
+  {% include 'html_head.html' %}
+</head>
+
+<body class="bg-light">
+  {% include 'header.html' %}
+
+  <div id="main_container" class="container-fluid">
+    <div id="search_app">
+    <div class="row">
+        <div class="col-12">
+          <h2>講義スレッド検索</h2>
+              <child-component v-on:childevent="searchMethod"></child-component>
+        </div> 
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table zebra-striping">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">科目名</th>
+              <th scope="col">教員</th>
+              <th scope="col">種類</th>
+              <th scope="col">学群</th>
+              <th scope="col">学類</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="sub in results">
+          <th>[[sub.code]]</th>
+          <td><a :href="'/threads/' + sub.thread_id + '/'">[[sub.name]]</a></td>
+          <td>[[sub.teachers]]</td>
+          <td>[[sub.subtype]]</td>
+          <td>[[sub.schools]]</td>
+          <td>[[sub.colleges]]</td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        上位500件のみ表示しています。
+      </div>
+    </div>
+    </div>
+    {% include 'footer.html' %}
+  </div>
+
+  {% include 'load_javascript.html' %}
+    <script src = "{% static 'board/search.js' %}"></script>
+</body>
+
+</html>

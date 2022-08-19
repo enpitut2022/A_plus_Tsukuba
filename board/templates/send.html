@@ -1,0 +1,37 @@
+<div id="send_message">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+          aria-controls="offcanvasScrolling" style="position:fixed; bottom: 30px; right: 20px;" v-on:click="judge_thread()">投稿する?</button>
+
+
+
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              名前 :
+              <input type="text" v-model="inputName" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
+                autofocus />
+              気持ち :
+              <select name="emotion_type" class="form-select" v-model="selectEmotion">
+                <option value="0">非常事態(´•_•; )</option>
+                <option value="1">じっくり(-ω-;)ｳｰﾝ</option>
+                <option value="2">助かった(*´▽`人)</option>
+                <option value="3">提案(^^)/~~~</option>
+                <option value="4">よしよし('ω')</option>
+                <option value="5">大丈夫？( *´艸｀)</option>
+              </select>
+              本文 :
+              <textarea id="main_textarea" v-model="inputText" class="form-control" rows="15" type="text" id="input_message" autocomplete="off"
+                name="message"
+                placeholder="
+    質問例)
+    display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
+    
+    回答例)
+    私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
+              <br>
+            
+              <input type="button" class="form-control btn btn-primary" id="submit_message" value="投稿する" data-bs-dismiss="offcanvas" v-on:click="send_message()" />
+              
+        </div>
+</div>
