@@ -1,12 +1,13 @@
 let post_id_judge = null;
 
-const test_api = new Vue({
+const post_content = new Vue({
     el: '#post_content',
     data: {
         message: null,
         child_message: {},
         thread_id: document.getElementById('thread_num').value,
         post_id: null,
+        opened_subthreads : new Set(),
     },
     delimiters: ['[[', ']]'],
     methods: {
@@ -20,7 +21,7 @@ const test_api = new Vue({
         },
         // 子スレを取得する関数
         async child_threads(post_id) {
-            this.$set(this.child_message, post_id, []);
+            this.opened_subthreads.add(post_id);
             let child_res = await axios.get(`/api/get_replies?post_id=${post_id}`);
             console.log('called child_threads desu');
             console.table(child_res.data);
@@ -74,9 +75,23 @@ const test_api = new Vue({
             post_id_judge = judge_post_id;
             console.log(post_id_judge);
         },
+
+        start () {
+            const self = this;
+            if (self.interval) {
+              clearInterval(self.interval);
+            }
+            self.interval = setInterval(() => {
+                this.fetch_subthreads();
+                for (const post_id of this.opened_subthreads) {
+                    this.child_threads(post_id);
+                  }
+            }, 1000)
+        }
     },
     mounted() {
         this.fetch_subthreads();
+        this.start();
     },
 });
 
