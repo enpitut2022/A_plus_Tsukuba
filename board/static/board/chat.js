@@ -30,11 +30,12 @@ const test_api = new Vue({
 
         formatTimeString(time) {
             let ts = Date.parse(time);
+            // console.log(ts);
             let date = new Date(ts);
 
-            let month = date.getMonth();
+            let month = date.getMonth() + 1;
             let year = date.getFullYear();
-            let day = date.getDay();
+            let day = date.getDate();
             let hour = date.getHours().toString().padStart(2, '0');
             let min = date.getMinutes().toString().padStart(2, '0');
 
@@ -87,17 +88,19 @@ const send_api = new Vue({
         child_message: {},
         thread_id: null,
         post_id: null,
+        inputName: "名無し",
+        selectEmotion: 0,
+        inputText: "",
+        thread_id: document.getElementById('thread_num').value,
     },
     delimiters: ['[[', ']]'],
     methods: {
         // メッセージを送信する関数(親スレ作成)
         async send_message() {
-            console.log("send:ex");
+
             axios.defaults.xsrfCookieName = 'csrftoken';
             axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"; 
 
-            console.log(this.message);
-            console.log(this.post_id);
             this.post_id = post_id_judge;
             
             
@@ -106,26 +109,24 @@ const send_api = new Vue({
                 const endpoint = '/api/post_subthreads';
                 console.log("sub:ex");
                 const res = await axios.post(
-                    endpoint,
+                    endpoint, 
                     {
-                        emotion: 3,
-                        thread: 1,
-                        sender_name: "名無し",
-                        text: "サブスレッド----------------------------------------------------------------------------------------------------------------------",
+                        emotion: this.selectEmotion,
+                        thread: this.thread_id,
+                        sender_name: this.inputName,
+                        text: this.inputText,
                     }
-                );
-                console.log(this.message);
-                
+                );                
             }else{
                 const endpoint = '/api/post_replies';
                 console.log("child:ex");
                 const res = await axios.post(
                     endpoint,
                     {
-                        emotion: 2,
+                        emotion: this.selectEmotion,
                         post_id: this.post_id,
-                        sender_name: "名無し",
-                        text: "リプライだよ？",
+                        sender_name: this.inputName,
+                        text: this.inputText,
                     }
                 );
             }
@@ -138,7 +139,7 @@ const send_api = new Vue({
         judge_thread(judge_post_id = null) {
             post_id_judge = judge_post_id;
             console.log(post_id_judge);
-            
+         
         },
     },
 });
