@@ -1,0 +1,10 @@
+.post_box {
+    padding:10px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+}
+
+.reply_box {
+    margin-top: 7px;
+    margin-left: 5%;
+}

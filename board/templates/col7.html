@@ -1,46 +1,62 @@
 <div class="col-md-7 bg-light">
         <h2>{{ thread_title }}</h2>
             <div id="post_content" class="content">
-              <div v-for="msg in message.data" :key="msg.post_id">
+              <div v-for="msg in message.data" :key="msg.post_id" class="mb-4">
+                <div class="post_box">
                 <h6>[[ msg.sender_name ]] <span :class="getCSS(msg.emotion)">[[ getText(msg.emotion) ]]</span>
-                  <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                    :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
-                    v-on:click="child_threads(msg.post_id)">
-                    このスレッドを表示する．
-                  </button>
+                  <span class="ms-3 text-gray-800">
+                  <small><small>
+                    投稿日: [[ formatTimeString(msg.created_at) ]]
+                  </small></small>
+                </span>
                 </h6>
                 <p class="lead">
                   <span style="white-space: pre-wrap;" v-text="msg.text"></span>
-                  <small><small>
-                      投稿日: [[ formatTimeString(msg.created_at) ]]
-                    </small></small>
                 </p>
+                  <button class="btn" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
+                  v-on:click="judge_thread(msg.post_id)">
+                  <span class="text-primary">コメントする</span>
+                </button>
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
+                :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
+                v-on:click="child_threads(msg.post_id)">
+                <span class="text-primary">このスレッドを表示する</span>
+              </button>
+                  </div>
                 <div class="collapse" :id="'a' + msg.post_id">
-                  <div class="card card-body bg-light">
+                  <!-- <div class="card card-body bg-light border-light"> -->
 
                     <div class="rows">
                       <div class="cols">
                         <div v-for="reply in child_message[msg.post_id]" :key="reply.reply_id">
-                          <p class="username">[[ reply.sender_name ]]<span :class="getCSS(reply.emotion)">[[
+                          <div class="post_box reply_box">
+                          <p class="username">[[ reply.sender_name ]]
+                  
+                            <span :class="getCSS(reply.emotion)">[[
                               getText(reply.emotion)
-                              ]]</span></p>
-                          <p class="lead">
-                            <span style="white-space: pre-wrap;" v-text="reply.text"></span>
-                            <small><small>
+                              ]]</span>
+                              <span class="ms-3 text-gray-800">
+                              <small><small>
                                 投稿日: [[ formatTimeString(reply.created_at) ]]
                               </small></small>
+                              </span>
+                            </p>
+                          <p class="lead">
+                            <span style="white-space: pre-wrap;" v-text="reply.text"></span>
                           </p>
+                          <button class="btn" type="button" data-bs-toggle="offcanvas"
+                          data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
+                          v-on:click="judge_thread(msg.post_id)">
+                          <span class="text-primary">コメントする</span>
+                        </button>
                         </div>
-                        <!-- <div id="reply_button">  -->
-                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                          data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" v-on:click="judge_thread(msg.post_id)">返信する</button>
-                        <!-- </div> -->
+                        </div>
 
-                        
-
+                  
                       </div>
                     </div>
-                  </div>
+                  <!-- </div> -->
                 </div>
               </div>
             </div>

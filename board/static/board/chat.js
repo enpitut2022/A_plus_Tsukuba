@@ -132,9 +132,6 @@ const send_api = new Vue({
             }
         },
 
-        // judge_thread(judge_post_id = null) {
-        //     this.post_id = judge_post_id;
-        // },
 
         judge_thread(judge_post_id = null) {
             post_id_judge = judge_post_id;
@@ -143,20 +140,3 @@ const send_api = new Vue({
         },
     },
 });
-
-// const post_button = new Vue({
-//     el: '#post_button',
-//     data: {
-//         message: null,
-//         child_message: {},
-//         thread_id: null,
-//         post_id: null,
-//     },
-//     delimiters: ['[[', ']]'],
-//     methods: {
-//         judge_thread(judge_post_id = null) {
-//             post_id_judge = judge_post_id;
-//             console.log(post_id_judge);
-//         },
-//     },
-// });

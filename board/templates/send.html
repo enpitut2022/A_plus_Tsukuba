@@ -31,7 +31,7 @@
     私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
               <br>
             
-              <input type="button" class="form-control btn btn-primary" id="submit_message" value="投稿する" v-on:click="send_message()" />
+              <input type="button" class="form-control btn btn-primary" id="submit_message" value="投稿する" data-bs-dismiss="offcanvas" v-on:click="send_message()" />
               
         </div>
 </div>
