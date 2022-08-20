@@ -7,7 +7,7 @@ from django.views.generic import TemplateView, ListView
 
 class Index(ListView):
     def get(self, request, *args, **kwargs):
-        return redirect("threads/1/")
+        return redirect("about/")
 
 
 class ThreadView(ListView):
@@ -23,6 +23,10 @@ class ThreadView(ListView):
         context['thread_title'] = thread_title
         context['thread_id'] = thread_id
         return context
+
+
+class AboutView(TemplateView):
+    template_name = "board/About.html"
 
 class SearchView(ListView):
     template_name = "board/Search.html"

@@ -1,0 +1,6 @@
+@media (max-width: 768px) {
+    /* md 以下の画面 */
+    .none-md {
+        display: none;
+    }
+}

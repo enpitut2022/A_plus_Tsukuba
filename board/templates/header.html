@@ -3,7 +3,7 @@
 <div class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(119, 0, 128);">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
               <img src="{% static 'board/enpit.png' %}" alt="" width="30" height="30" class="d-inline-block align-text-top">
               A+つくば
             </a>
@@ -14,7 +14,11 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="/search/">スレッド検索</a>
-                <a class="nav-link" href="#">A+つくばとは？</a>
+                <a class="nav-link active" href="/about/">A+つくばとは？</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="bookmark" value="{{ thread_id }} {{ thread_title }}">
+                  ブックマークを追加</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="bookmark_delete" value="{{ thread_id }} {{ thread_title }}">
+                    ブックマークを削除</button>
               </div>
             </div>
           </div>
