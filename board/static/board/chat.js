@@ -44,7 +44,7 @@ const post_content = new Vue({
         getCSS(id) {
             const dict = {
                 0: 'badge rounded-pill bg-danger',
-                1: 'badge rounded-pill bg-warning',
+                1: 'badge rounded-pill bg-secondary',
                 2: 'badge rounded-pill bg-success',
                 3: 'badge rounded-pill bg-primary',
                 4: `badge rounded-pill bg-info`,
@@ -101,7 +101,7 @@ const send_api = new Vue({
         thread_id: null,
         post_id: null,
         inputName: "名無し",
-        selectEmotion: 0,
+        selectEmotion: 1,
         inputText: "",
         thread_id: document.getElementById('thread_num').value,
     },
