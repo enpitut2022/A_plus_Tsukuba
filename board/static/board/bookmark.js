@@ -4,13 +4,7 @@ button.addEventListener('click', setBookmark);
 
 function setBookmark() {
         const thread_id = button.getAttribute('value');
-        // create array
         const bookmark = [];
-        // let bookmark_length = getBookmark_of_length();
-        // console.log(bookmark_length);
-
-        let bookmark_length = getBookmark().length;
-        console.log(bookmark_length);
 
 
         const dateObject = new Date();
@@ -22,35 +16,44 @@ function setBookmark() {
         document.cookie = "bookmark2=" + "2" + "; " + expires + "; " + path;
         
         console.log(prototype());
-        // console.log(document.cookie); //ITF=true; bookmark1=1; bookmark2=2
-        // console.log("test:ex");
-        // console.log(getBookmark()); //["1", "2"]
-
-        
 }
 
-function getBookmark(){
+function prototype(){
         let bookmark = [];
-        // start with bookmark
-        let i = 1;
-        for (i=1; i<4 ; i++) { // 2 is val
-                const bookmark_key = "bookmark" + i;
-                const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key));
-                console.log(bookmark_value); //bookmark1=1 and bookmark2=2 and bookmark3=undefined
-                if (typeof bookmark_value === "undefined") {
-                        break;
-                }
-                else {   
-                        bookmark.push(bookmark_value.split('=')[1]);
-                }
-                // if (bookmark_value) {
-                //         bookmark.push(bookmark_value.split('=')[1]);
-                // }
+        const bookmark_key = "bookmark";
+        const bookmark_value = document.cookie.split('; ').filter(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
+        console.log("cookieの配列: " + bookmark_value); //[bookmark1=1, bookmark2=2]
+        const bookmark_length = bookmark_value.length; //ブックマークの長さ取得
+        console.log("配列の長さ: " + bookmark_length);
+        for(let i = 0; i < bookmark_length; i++){
+            bookmark.push(bookmark_value[i].split('=')[1])
         }
-        
-        console.log(bookmark); //["1", "2"]
+        console.log("cookieのvalue: " + bookmark); //["1", "2"]
         return bookmark;
-}
+    }
+    
+// function getBookmark(){
+//         let bookmark = [];
+//         // start with bookmark
+//         let i = 1;
+//         for (i=1; i<4 ; i++) { // 2 is val
+//                 const bookmark_key = "bookmark" + i;
+//                 const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key));
+//                 console.log(bookmark_value); //bookmark1=1 and bookmark2=2 and bookmark3=undefined
+//                 if (typeof bookmark_value === "undefined") {
+//                         break;
+//                 }
+//                 else {   
+//                         bookmark.push(bookmark_value.split('=')[1]);
+//                 }
+//                 // if (bookmark_value) {
+//                 //         bookmark.push(bookmark_value.split('=')[1]);
+//                 // }
+//         }
+        
+//         console.log(bookmark); //["1", "2"]
+//         return bookmark;
+// }
 
 // function getBookmark_of_length(){
 //         let bookmark = [];
@@ -96,16 +99,4 @@ function getBookmark(){
 //                 }
 //         }
 
-function prototype(){
-    let bookmark = [];
-    const bookmark_key = "bookmark";
-    const bookmark_value = document.cookie.split('; ').filter(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
-    console.log("cookieの配列: " + bookmark_value); //[bookmark1=1, bookmark2=2]
-    const bookmark_length = bookmark_value.length; //ブックマークの長さ取得
-    console.log("配列の長さ: " + bookmark_length);
-    for(let i = 0; i < bookmark_length; i++){
-        bookmark.push(bookmark_value[i].split('=')[1])
-    }
-    console.log("cookieのvalue: " + bookmark); //["1", "2"]
-    return bookmark;
-}
+
