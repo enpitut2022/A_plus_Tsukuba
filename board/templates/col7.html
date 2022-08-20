@@ -13,16 +13,17 @@
                 <p class="lead">
                   <span style="white-space: pre-wrap;" v-text="msg.text"></span>
                 </p>
-                  <button class="btn" type="button" data-bs-toggle="offcanvas"
+                <div style="justify-content: space-between; display: flex;">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
+                  :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
+                  v-on:click="child_threads(msg.post_id)">
+                  <span class="text-primary">コメントを表示する</span>
+                </button>
+                  <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
                   v-on:click="judge_thread(msg.post_id)">
-                  <span class="text-primary">コメントする</span>
-                </button>
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
-                :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
-                v-on:click="child_threads(msg.post_id)">
-                <span class="text-primary">コメントを表示する</span>
-              </button>
+                  <span class="text">コメントする</span>
+                </button></div>
                   </div>
                 <div class="collapse" :id="'a' + msg.post_id">
                   <!-- <div class="card card-body bg-light border-light"> -->
@@ -45,11 +46,12 @@
                           <p class="lead">
                             <span style="white-space: pre-wrap;" v-text="reply.text"></span>
                           </p>
-                          <button class="btn" type="button" data-bs-toggle="offcanvas"
+                          <div style="text-align: right">
+                          <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
                           data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
                           v-on:click="judge_thread(msg.post_id)">
-                          <span class="text-primary">コメントする</span>
-                        </button>
+                          <span class="text">コメントする</span>
+                        </button></div>
                         </div>
                         </div>
 

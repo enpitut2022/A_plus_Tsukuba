@@ -1,13 +1,15 @@
 <div id="send_message">
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-          aria-controls="offcanvasScrolling" style="position:fixed; bottom: 30px; right: 20px;" v-on:click="judge_thread()">投稿する?</button>
+        <button class="btn btn-primary send-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+          aria-controls="offcanvasScrolling" style="position:fixed; bottom: 30px; right: 20px;" v-on:click="judge_thread()">投稿する</button>
 
 
 
-        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        <div class="offcanvas offcanvas-end offcanvas-div" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
           id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <div class="rows">
+            <div class="cols" style="margin-left: 3%; margin-right:3%;">
               名前 :
               <input type="text" v-model="inputName" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
                 autofocus />
@@ -32,6 +34,7 @@
               <br>
             
               <input type="button" class="form-control btn btn-primary" id="submit_message" value="投稿する" data-bs-dismiss="offcanvas" v-on:click="send_message()" />
-              
+            </div>
+          </div>
         </div>
 </div>
