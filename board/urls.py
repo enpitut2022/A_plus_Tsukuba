@@ -12,4 +12,5 @@ urlpatterns = [
     path('api/post_subthreads', apis.post_subthreads.as_view(), name = "api_post_subthreadss"),
     path('api/post_replies', apis.post_replies.as_view(), name = "api_post_replies"),
     path('api/search_subjects', apis.search_subjects.as_view(), name = "api_search_subjects"),
+    path('about/', views.AboutView.as_view(), name = "about"),
 ]
