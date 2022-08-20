@@ -1,102 +1,79 @@
 const button = document.getElementById('bookmark');
+const button_delete = document.getElementById('bookmark_delete')
 button.addEventListener('click', setBookmark);
+button_delete.addEventListener('click', deleteBookmark);
 
 
 function setBookmark() {
-        const thread_id = button.getAttribute('value');
+        const thread_value = button.getAttribute('value').split(' '); //thread_id と thread_title が設定されたvalue属性取得
+        const thread_id = thread_value[0];
+        const thread_title = thread_value[1];
         const bookmark = [];
 
 
-        const dateObject = new Date();
-        dateObject.setTime( dateObject.getTime() + ( 5*365*24*60*60*1000 ) );
-        const expires = "expires=" + dateObject.toGMTString();
-        const path = "path=/";
-        // document.cookie = "bookmark1=" + thread_id + "; " + expires + "; " + path;
-        document.cookie = "bookmark1=" + "1" + "; " + expires + "; " + path;
-        document.cookie = "bookmark2=" + "2" + "; " + expires + "; " + path;
+        // load cookie
+        const bookmark_key = "bookmark";
+        const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
+        console.log(bookmark_value);
         
-        console.log(prototype());
+        let bookmark_json = {};
+        if(bookmark_value){
+                bookmark_json = JSON.parse(bookmark_value.split('=')[1]); //bookmark_valueをJSONに変換して取得
+        }
+
+        // add bookmark
+        bookmark_json[thread_id] = thread_title;
+        setCookie(bookmark_key, bookmark_json);
+        console.log(bookmark_json);
+        
+        
+        console.log(document.cookie);
+       
+        
+        
+        
 }
 
-function prototype(){
-        let bookmark = [];
+function deleteBookmark(){
+        const thread_value = button_delete.getAttribute('value').split(' '); //thread_id と thread_title が設定されたvalue属性取得
+        const thread_id = thread_value[0];
+        // const thread_title = thread_value[1];
+
+        // delete bookmark
         const bookmark_key = "bookmark";
-        const bookmark_value = document.cookie.split('; ').filter(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
-        console.log("cookieの配列: " + bookmark_value); //[bookmark1=1, bookmark2=2]
-        const bookmark_length = bookmark_value.length; //ブックマークの長さ取得
-        console.log("配列の長さ: " + bookmark_length);
-        for(let i = 0; i < bookmark_length; i++){
-            bookmark.push(bookmark_value[i].split('=')[1])
+        const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
+
+        let bookmark_json = {};
+        if(bookmark_value){
+                bookmark_json = JSON.parse(bookmark_value.split('=')[1]); //bookmark_valueをJSONに変換して取得
         }
-        console.log("cookieのvalue: " + bookmark); //["1", "2"]
-        return bookmark;
-    }
-    
-// function getBookmark(){
-//         let bookmark = [];
-//         // start with bookmark
-//         let i = 1;
-//         for (i=1; i<4 ; i++) { // 2 is val
-//                 const bookmark_key = "bookmark" + i;
-//                 const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key));
-//                 console.log(bookmark_value); //bookmark1=1 and bookmark2=2 and bookmark3=undefined
-//                 if (typeof bookmark_value === "undefined") {
-//                         break;
-//                 }
-//                 else {   
-//                         bookmark.push(bookmark_value.split('=')[1]);
-//                 }
-//                 // if (bookmark_value) {
-//                 //         bookmark.push(bookmark_value.split('=')[1]);
-//                 // }
-//         }
+        delete bookmark_json[thread_id]
+        setCookie(bookmark_key, bookmark_json);
+        console.log(bookmark_json);
         
-//         console.log(bookmark); //["1", "2"]
-//         return bookmark;
-// }
+}
 
-// function getBookmark_of_length(){
-//         let bookmark = [];
-//         // start with bookmark
-//         let bookmark_length = 0;
-//         let i = 1;
-//         while (true) {
-//                 const bookmark_str = "bookmark" + i;
-//                 const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_str));
-//                 console.log(bookmark_value);
-//                 if (bookmark_value) {
-//                         // bookmark.push(bookmark_value.split('=')[1]);
-//                         bookmark_length += 1;
-//                         i += 1;
-//                 }
-//                 else{
-//                         break;
-//                 }
-//         }
-        
-//         console.log(bookmark_length);
-//         return bookmark_length;
-// }
+const setCookie = (name, json)=>{
 
 
+    let cookie = '';
+    let expire = '';
+    let period = '';
 
-// const bookmark = document.cookie.split('; ').find(row => row.startsWith('bookmark')).split('=')[1];
+    //Cookieの保存名と値を指定
+    cookies = name + '=' + JSON.stringify(json) + ';';
 
-// const dateObject = new Date();
-// dateObject.setTime( dateObject.getTime() + ( 30*24*60*60*1000 ) );
-// const expires = "expires=" + dateObject.toGMTString();
-// const path = "path=/";
-// document.cookie = "ITF=true" + "; " + expires + "; " + path;
+    //Cookieを保存するパスを指定
+    cookies += 'path=/ ;';
 
+    //Cookieを保存する期間を指定
+    period = 30; //保存日数
+    expire = new Date();
+    expire.setTime(expire.getTime() + 1000 * 3600 * 24 * period);
+    expire.toUTCString();
+    cookies += 'expires=' + expire + ';';
 
-
-// get bookmark from cookie
-//         const cookie = document.cookie;
-//         const cookie_array = cookie.split('; ');
-//         for (const row of cookie_array) {
-//                 const row_array = row.split('=');
-//                 if (row_array[0] === 'bookmark') {
-//                 }
-//         }
-
+    //Cookieを保存する
+    document.cookie = cookies;
+};
 
