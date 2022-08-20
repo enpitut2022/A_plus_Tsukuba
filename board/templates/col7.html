@@ -2,8 +2,9 @@
         <h2>{{ thread_title }}</h2>
             <div id="post_content" class="content">
               <div v-for="msg in message.data" :key="msg.post_id" class="mb-4">
+                <div :id="'post_box' + msg.post_id" class="post_anker"></div>
                 <div class="post_box">
-                <h6>[[ msg.sender_name ]] <span :class="getCSS(msg.emotion)">[[ getText(msg.emotion) ]]</span>
+                <h6 >[[ msg.sender_name ]] <span :class="getCSS(msg.emotion)">[[ getText(msg.emotion) ]]</span>
                   <span class="ms-3 text-gray-800">
                   <small><small>
                     投稿日: [[ formatTimeString(msg.created_at) ]]
@@ -46,16 +47,11 @@
                           <p class="lead">
                             <span style="white-space: pre-wrap;" v-text="reply.text"></span>
                           </p>
-                          <div style="text-align: right">
-                          <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
-                          data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
-                          v-on:click="judge_thread(msg.post_id)">
-                          <span class="text">コメントする</span>
-                        </button></div>
                         </div>
                         </div>
-
-                  
+                        <div style="text-align: right">
+                        <a :href="'#post_box' + msg.post_id">コメントの先頭に戻る</a> 
+                      </div>
                       </div>
                     </div>
                   <!-- </div> -->

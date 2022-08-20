@@ -30,3 +30,8 @@
         width: 42%;
     }
 }
+
+.post_anker {
+    padding-top: 64px;
+    margin-top:-64px;
+}
