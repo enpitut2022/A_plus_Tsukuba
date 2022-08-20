@@ -21,14 +21,12 @@ const post_content = new Vue({
         // 子スレを取得する関数
         async child_threads(post_id) {
             let child_res = await axios.get(`/api/get_replies?post_id=${post_id}`);
-            console.log('called child_threads desu');
 
             this.$set(this.child_message, post_id, child_res.data || []);
         },
 
         formatTimeString(time) {
             let ts = Date.parse(time);
-            // console.log(ts);
             let date = new Date(ts);
 
             let month = date.getMonth() + 1;
@@ -127,7 +125,6 @@ const send_api = new Vue({
             if (!this.post_id) {
                 //post_id 指定なし
                 const endpoint = '/api/post_subthreads';
-                console.log("sub:ex");
                 const res = await axios.post(
                     endpoint, 
                     {
@@ -139,7 +136,6 @@ const send_api = new Vue({
                 );                
             }else{
                 const endpoint = '/api/post_replies';
-                console.log("child:ex");
                 const res = await axios.post(
                     endpoint,
                     {
@@ -151,7 +147,6 @@ const send_api = new Vue({
                 );
             }
             this.inputText = "";
-            console.log(this.inputText);
         },
 
 
