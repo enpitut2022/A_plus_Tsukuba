@@ -1,5 +1,23 @@
 <div class="col-md-7 bg-light">
-        <h2>{{ thread_title }}</h2>
+        <h2>{{ thread_title }}
+
+
+
+          <!-- added -->
+          <div id="bookmark_toggle">
+          <sapn class="checkbox">
+            <div style="display: inline-block" class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" v-on:click="judge_checked()" v-model="checked">
+              <label class="form-check-label" for="flexSwitchCheckDefault">ブックマーク</label>
+            </div>
+          </span>
+        </div>
+
+
+
+        </h2>
+        
+
             <div id="post_content" class="content">
               <div v-for="msg in message.data" :key="msg.post_id" class="mb-4">
                 <div :id="'post_box' + msg.post_id" class="post_anker"></div>
