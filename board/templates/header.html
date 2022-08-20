@@ -19,6 +19,22 @@
                   ブックマークを追加</button>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="bookmark_delete" value="{{ thread_id }} {{ thread_title }}">
                     ブックマークを削除</button>
+
+
+                    <div id="bookmark_dropdown">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        ブックマークスレッド
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" v-model="bookmark_data">
+                        <li><a class="dropdown-item" href="/threads/1" v-text="thread_title[0]"></a></li>
+                        <li><a class="dropdown-item" href="#" v-text="thread_title[1]"></a></li>
+                        <li><a class="dropdown-item" href="#" v-text="thread_title[2]"></a></li>
+                      </ul>
+                    </li>
+                  </div>
+
+
               </div>
             </div>
           </div>
