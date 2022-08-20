@@ -15,6 +15,10 @@
               <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="/search/">スレッド検索</a>
                 <a class="nav-link" href="#">A+つくばとは？</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="bookmark" value="{{ thread_id }} {{ thread_title }}">
+                  ブックマークを追加</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="bookmark_delete" value="{{ thread_id }} {{ thread_title }}">
+                    ブックマークを削除</button>
               </div>
             </div>
           </div>

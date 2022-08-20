@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+
+<head>
+  {% include 'html_head.html' %}
+  <link rel="stylesheet" href="{% static 'board/about.css' %}">
+
+</head>
+
+<body class="bg-light">
+  {% include 'header.html' %}
+
+  <div id="main_container" class="container-fluid">
+    <div id="about_container" class="container">
+        <div class="row justify-content-center">
+            <div class="col"><img src="{% static 'board/enpitA+.png' %}" alt=""></div>
+        </div>
+        <div class="row">
+            <div class="col">
+            <hr size="5" width="80">
+            <h2>+つくばとは?</h2>
+        </div>
+            [A+つくば] は
+            [大学の課題を効率よく十分な品質で提出することができない
+            (A+が取れない!!)問題]を解決したい
+            [同じ講義に知り合いが少ない筑波大生]向けの
+            [筑波大生専用の匿名学習支援SNS] です。
+            これは [認証機能付き匿名SNSを実現すること] によって、
+            [Yahoo知恵袋やTwitter] とは違って
+            [同じ大学内かつ匿名で相談して課題解決に取り組む] を実現できます。
+            
+        <div>
+            完全匿名性による議論
+        </div>
+        <div>
+            
+        </div>
+    </div>
+    
+    {% include 'footer.html' %}
+  </div>
+
+  {% include 'load_javascript.html' %}
+</body>
+
+</html>

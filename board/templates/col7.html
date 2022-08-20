@@ -1,9 +1,28 @@
 <div class="col-md-7 bg-light">
-        <h2>{{ thread_title }}</h2>
+        <h2>{{ thread_title }}
+
+
+
+          <!-- added -->
+          <div id="bookmark_toggle">
+          <sapn class="checkbox">
+            <div style="display: inline-block" class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" v-on:click="judge_checked()" v-model="checked">
+              <label class="form-check-label" for="flexSwitchCheckDefault">ブックマーク</label>
+            </div>
+          </span>
+        </div>
+
+
+
+        </h2>
+        
+
             <div id="post_content" class="content">
               <div v-for="msg in message.data" :key="msg.post_id" class="mb-4">
+                <div :id="'post_box' + msg.post_id" class="post_anker"></div>
                 <div class="post_box">
-                <h6>[[ msg.sender_name ]] <span :class="getCSS(msg.emotion)">[[ getText(msg.emotion) ]]</span>
+                <h6 >[[ msg.sender_name ]] <span :class="getCSS(msg.emotion)">[[ getText(msg.emotion) ]]</span>
                   <span class="ms-3 text-gray-800">
                   <small><small>
                     投稿日: [[ formatTimeString(msg.created_at) ]]
@@ -13,16 +32,25 @@
                 <p class="lead">
                   <span style="white-space: pre-wrap;" v-text="msg.text"></span>
                 </p>
-                  <button class="btn" type="button" data-bs-toggle="offcanvas"
+                <div v-if="reply_count[msg.post_id] !== 0">
+                <div style="justify-content: space-between; display: flex;">
+                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
+                  :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
+                  v-on:click="child_threads(msg.post_id)">
+                  <span class="text-primary">[[ reply_count[msg.post_id] ]]件のコメントを表示する</span>
+                </button>
+                  <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
                   v-on:click="judge_thread(msg.post_id)">
-                  <span class="text-primary">コメントする</span>
-                </button>
-                <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
-                :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
-                v-on:click="child_threads(msg.post_id)">
-                <span class="text-primary">コメントを表示する</span>
-              </button>
+                  <span class="text">コメントする</span>
+                </button></div>
+                  </div>
+                  <div v-else style="text-align: right;">
+                    <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
+                    v-on:click="judge_thread(msg.post_id)">
+                    <span class="text">コメントする</span>
+                  </button>
                   </div>
                 <div class="collapse" :id="'a' + msg.post_id">
                   <!-- <div class="card card-body bg-light border-light"> -->
@@ -45,15 +73,11 @@
                           <p class="lead">
                             <span style="white-space: pre-wrap;" v-text="reply.text"></span>
                           </p>
-                          <button class="btn" type="button" data-bs-toggle="offcanvas"
-                          data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
-                          v-on:click="judge_thread(msg.post_id)">
-                          <span class="text-primary">コメントする</span>
-                        </button>
                         </div>
                         </div>
-
-                  
+                        <div style="text-align: right">
+                        <a :href="'#post_box' + msg.post_id">コメントの先頭に戻る</a> 
+                      </div>
                       </div>
                     </div>
                   <!-- </div> -->

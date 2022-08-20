@@ -7,7 +7,7 @@ const post_content = new Vue({
         child_message: {},
         thread_id: document.getElementById('thread_num').value,
         post_id: null,
-        opened_subthreads : new Set(),
+        reply_count: {}
     },
     delimiters: ['[[', ']]'],
     methods: {
@@ -16,22 +16,17 @@ const post_content = new Vue({
             let res = await axios.get(
                 `/api/get_subthreads?thread_id=${this.thread_id}`
             );
-            console.table(res.data);
-            this.message = res;
+                this.message = res;
         },
         // 子スレを取得する関数
         async child_threads(post_id) {
-            this.opened_subthreads.add(post_id);
             let child_res = await axios.get(`/api/get_replies?post_id=${post_id}`);
-            console.log('called child_threads desu');
-            console.table(child_res.data);
 
             this.$set(this.child_message, post_id, child_res.data || []);
         },
 
         formatTimeString(time) {
             let ts = Date.parse(time);
-            // console.log(ts);
             let date = new Date(ts);
 
             let month = date.getMonth() + 1;
@@ -46,11 +41,11 @@ const post_content = new Vue({
         getCSS(id) {
             const dict = {
                 0: 'badge rounded-pill bg-danger',
-                1: 'badge rounded-pill bg-warning',
+                1: 'badge rounded-pill bg-secondary',
                 2: 'badge rounded-pill bg-success',
                 3: 'badge rounded-pill bg-primary',
                 4: `badge rounded-pill bg-info`,
-                5: 'badge rounded-pill bg-Light',
+                5: 'badge rounded-pill bg-dark',
             };
 
             return dict[id];
@@ -73,7 +68,6 @@ const post_content = new Vue({
 
         judge_thread(judge_post_id = null) {
             post_id_judge = judge_post_id;
-            console.log(post_id_judge);
         },
 
         start () {
@@ -82,15 +76,24 @@ const post_content = new Vue({
               clearInterval(self.interval);
             }
             self.interval = setInterval(() => {
-                this.fetch_subthreads();
-                for (const post_id of this.opened_subthreads) {
-                    this.child_threads(post_id);
-                  }
-            }, 1000)
+                this.loop();
+            }, 3000)
+        },
+        async loop () {
+            if (document.visibilityState === 'visible') {
+                await this.fetch_subthreads();
+                for (const i in this.message.data) {
+                    const pid = this.message.data[i].post_id;
+                    await this.child_threads(pid);
+                    let count = 0;
+                    if(this.child_message[pid]) count = this.child_message[pid].length;
+                    this.$set(this.reply_count, pid, count);
+                }
+            }
         }
     },
     mounted() {
-        this.fetch_subthreads();
+        this.loop();
         this.start();
     },
 });
@@ -104,7 +107,7 @@ const send_api = new Vue({
         thread_id: null,
         post_id: null,
         inputName: "名無し",
-        selectEmotion: 0,
+        selectEmotion: 1,
         inputText: "",
         thread_id: document.getElementById('thread_num').value,
     },
@@ -122,7 +125,6 @@ const send_api = new Vue({
             if (!this.post_id) {
                 //post_id 指定なし
                 const endpoint = '/api/post_subthreads';
-                console.log("sub:ex");
                 const res = await axios.post(
                     endpoint, 
                     {
@@ -134,7 +136,6 @@ const send_api = new Vue({
                 );                
             }else{
                 const endpoint = '/api/post_replies';
-                console.log("child:ex");
                 const res = await axios.post(
                     endpoint,
                     {
@@ -145,13 +146,12 @@ const send_api = new Vue({
                     }
                 );
             }
+            this.inputText = "";
         },
 
 
         judge_thread(judge_post_id = null) {
-            post_id_judge = judge_post_id;
-            console.log(post_id_judge);
-         
+            post_id_judge = judge_post_id;         
         },
     },
 });

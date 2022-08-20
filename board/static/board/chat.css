@@ -8,3 +8,32 @@
     margin-top: 7px;
     margin-left: 5%;
 }
+
+.comment-btn {
+    border-radius: 25px;
+    width: 7em;
+    height: 2em;
+    padding: 2px;
+}
+
+.send-btn {
+    width: 85px;
+    height: 45px;
+}
+
+@media (min-width: 768px) {
+    /* md 以上の画面 */
+    .offcanvas-div {
+        width: 42%;
+    }
+    .send-btn {
+        width: 256px;
+        height: 64px;
+        font-size: 1.5em;
+    }
+}
+
+.post_anker {
+    padding-top: 64px;
+    margin-top:-64px;
+}
