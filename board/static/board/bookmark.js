@@ -125,8 +125,8 @@ const bookmark_dropdown = new Vue({
         el: '#bookmark_dropdown',
         data: {
                 bookmark_data: [],
-                thread_title: [],
-                thread_id: [],
+                // thread_title: [],
+                // thread_id: [],
         },
         delimiters: ['[[', ']]'],
         methods: {
@@ -141,23 +141,6 @@ const bookmark_dropdown = new Vue({
                 }
                 console.log(bookmark_json);
                 this.bookmark_data = Object.entries(bookmark_json);
-                // console.log(this.bookmark_data[0][1]); //First
-                // console.log(this.bookmark_data[1][1]); //情報リテラシー
-                let title_array = [];
-                let id_array = [];
-                for(let i = 0; i < this.bookmark_data.length; i++){
-                //     console.log(this.bookmark_data[i][1]);
-                    title_array.push(this.bookmark_data[i][1]);
-                    id_array.push(this.bookmark_data[i][0]);
-                //     console.log(id_array);
-                }
-                // insert tmparray to bookmark_data
-                this.thread_title = title_array;
-                this.thread_id = id_array;
-                // this.bookmark_data = tmparray;
-                // this.thread_title = title_array;
-                console.log(this.thread_title);
-                console.log(this.thread_id);
                 
             },
             

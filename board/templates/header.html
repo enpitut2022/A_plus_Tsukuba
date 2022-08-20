@@ -27,9 +27,12 @@
                         ブックマークスレッド
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" v-model="bookmark_data">
-                        <li><a class="dropdown-item" href="/threads/1" v-text="thread_title[0]"></a></li>
-                        <li><a class="dropdown-item" href="#" v-text="thread_title[1]"></a></li>
-                        <li><a class="dropdown-item" href="#" v-text="thread_title[2]"></a></li>
+                        <li v-for="bookmark in bookmark_data">
+                          <a :href="'../' + bookmark[0]">
+                            [[ bookmark[1] ]]
+                          </a> 
+                        </li>
+                        
                       </ul>
                     </li>
                   </div>
