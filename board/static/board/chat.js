@@ -7,7 +7,7 @@ const post_content = new Vue({
         child_message: {},
         thread_id: document.getElementById('thread_num').value,
         post_id: null,
-        opened_subthreads : new Set(),
+        reply_count: {}
     },
     delimiters: ['[[', ']]'],
     methods: {
@@ -20,7 +20,6 @@ const post_content = new Vue({
         },
         // 子スレを取得する関数
         async child_threads(post_id) {
-            this.opened_subthreads.add(post_id);
             let child_res = await axios.get(`/api/get_replies?post_id=${post_id}`);
             console.log('called child_threads desu');
 
@@ -79,15 +78,24 @@ const post_content = new Vue({
               clearInterval(self.interval);
             }
             self.interval = setInterval(() => {
-                this.fetch_subthreads();
-                for (const post_id of this.opened_subthreads) {
-                    this.child_threads(post_id);
-                  }
-            }, 1000)
+                this.loop();
+            }, 3000)
+        },
+        async loop () {
+            if (document.visibilityState === 'visible') {
+                await this.fetch_subthreads();
+                for (const i in this.message.data) {
+                    const pid = this.message.data[i].post_id;
+                    await this.child_threads(pid);
+                    let count = 0;
+                    if(this.child_message[pid]) count = this.child_message[pid].length;
+                    this.$set(this.reply_count, pid, count);
+                }
+            }
         }
     },
     mounted() {
-        this.fetch_subthreads();
+        this.loop();
         this.start();
     },
 });
