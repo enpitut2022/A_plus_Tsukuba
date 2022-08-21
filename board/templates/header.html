@@ -27,7 +27,12 @@
                         ブックマーク一覧
                       </a>
                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li v-for="bookmark in bookmark_data">
+                        <li v-if="bookmark_data.length===0">
+                          <a href="#" class="dropdown-item">
+                            ブックマークが登録されていません。
+                          </a> 
+                        </li>
+                        <li v-else v-for="bookmark in bookmark_data">
                           <a :href="'/threads/' + bookmark[0]" class="dropdown-item">
                             [[ bookmark[1] ]]
                           </a> 
