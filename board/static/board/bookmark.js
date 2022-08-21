@@ -121,3 +121,36 @@ const setCookie = (name, json)=>{
     document.cookie = cookies;
 };
 
+const bookmark_dropdown = new Vue({
+        el: '#bookmark_dropdown',
+        data: {
+                bookmark_data: [],
+                // thread_title: [],
+                // thread_id: [],
+        },
+        delimiters: ['[[', ']]'],
+        methods: {
+            loadbookmark() {
+                const bookmark_key = "bookmark";
+                const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
+                console.log(bookmark_value);
+                
+                let bookmark_json = {};
+                if(bookmark_value){
+                        bookmark_json = JSON.parse(bookmark_value.split('=')[1]); //bookmark_valueをJSONに変換して取得
+                }
+                console.log(bookmark_json);
+                this.bookmark_data = Object.entries(bookmark_json);
+                
+            },
+            
+
+        },
+        mounted() {
+        
+            this.loadbookmark();
+            
+        
+            console.log("testdaaaaaaa");
+        },
+});
