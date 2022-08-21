@@ -1,5 +1,4 @@
 {% load static %}
-<input type="hidden" id="thread_num" value="{{ thread_id }}" />
 <div class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(119, 0, 128);">
           <div class="container-fluid">
@@ -15,23 +14,17 @@
               <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="/search/">スレッド検索</a>
                 <a class="nav-link active" href="/about/">A+つくばとは？</a>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="bookmark" value="{{ thread_id }} {{ thread_title }}">
-                  ブックマークを追加</button>
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="bookmark_delete" value="{{ thread_id }} {{ thread_title }}">
-                    ブックマークを削除</button>
-
-
                     <div id="bookmark_dropdown">
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        ブックマークスレッド
+                      <a class="nav-link active dropdown-toggle" href="#"   v-on:click="loadbookmark()" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        ブックマーク一覧
                       </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" v-model="bookmark_data">
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li v-for="bookmark in bookmark_data">
-                          <a :href="'../' + bookmark[0]">
+                          <a :href="'/threads/' + bookmark[0]" class="dropdown-item">
                             [[ bookmark[1] ]]
                           </a> 
-                        </li>
+                      </li>
                         
                       </ul>
                     </li>
