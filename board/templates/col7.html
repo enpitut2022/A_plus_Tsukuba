@@ -32,26 +32,23 @@
                 <p class="lead">
                   <span style="white-space: pre-wrap;" v-text="msg.text"></span>
                 </p>
-                <div v-if="reply_count[msg.post_id] !== 0">
-                <div style="justify-content: space-between; display: flex;">
+                <div class="row">
+                  <div class="d-inline-flex col justify-content-start">
+                  <div v-if="reply_count[msg.post_id] !== 0">
                   <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
                   :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
                   v-on:click="child_threads(msg.post_id)">
                   <span class="text-primary">[[ reply_count[msg.post_id] ]]件のコメントを表示する</span>
                 </button>
+                </div></div>
+                <div class="d-inline-flex col justify-content-end">
                   <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
                   v-on:click="judge_thread(msg.post_id)">
                   <span class="text">コメントする</span>
-                </button></div>
-                  </div>
-                  <div v-else style="text-align: right;">
-                    <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
-                    v-on:click="judge_thread(msg.post_id)">
-                    <span class="text">コメントする</span>
-                  </button>
-                  </div>
+                </button>
+              </div>
+              </div>
                 <div class="collapse" :id="'a' + msg.post_id">
                   <!-- <div class="card card-body bg-light border-light"> -->
 
