@@ -12,14 +12,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="/search/">スレッド検索</a>
+                <a class="nav-link active" aria-current="page" href="/search/">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>スレッド検索</a>
                 <a class="nav-link active" href="/about/">A+つくばとは？</a>
-                    <div id="bookmark_dropdown">
+              </div>
+              <div id="bookmark_dropdown" class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
                       <a class="nav-link active dropdown-toggle" href="#"   v-on:click="loadbookmark()" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                        </svg>
                         ブックマーク一覧
                       </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <li v-for="bookmark in bookmark_data">
                           <a :href="'/threads/' + bookmark[0]" class="dropdown-item">
                             [[ bookmark[1] ]]
@@ -28,9 +35,6 @@
                         
                       </ul>
                     </li>
-                  </div>
-
-
               </div>
             </div>
           </div>
