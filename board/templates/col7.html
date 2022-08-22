@@ -1,22 +1,25 @@
+<input type="hidden" id="thread_num" value="{{ thread_id }}" />
+<input type="hidden" id="thread_title" value="{{ thread_title }}" />
 <div class="col-md-7 bg-light">
-        <h2>{{ thread_title }}
-
-
-
-          <!-- added -->
-          <div id="bookmark_toggle">
-          <sapn class="checkbox">
-            <div style="display: inline-block" class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" v-on:click="judge_checked()" v-model="checked">
-              <label class="form-check-label" for="flexSwitchCheckDefault">ブックマーク</label>
-            </div>
-          </span>
+        <div class="row">
+          <div class="col-lg-9">
+              <h2>{{ thread_title }}</h2>
+          </div>
+          <div id="bookmark_toggle" class="col-lg-3 text-end">
+              <input type="checkbox" class="btn-check" id="bookmark-btn-check-outlined" autocomplete="off" v-model="checked" 
+              v-on:click="judge_checked()">
+              <label class="btn btn-outline-success" for="bookmark-btn-check-outlined">
+                  <svg v-if="checked === true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                  </svg>
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+                  </svg>
+                ブックマーク
+              </label>
+          </div>
         </div>
-
-
-
-        </h2>
-        
 
             <div id="post_content" class="content">
               <div v-for="msg in message.data" :key="msg.post_id" class="mb-4">
@@ -30,28 +33,25 @@
                 </span>
                 </h6>
                 <p class="lead">
-                  <span style="white-space: pre-wrap;" v-text="msg.text"></span>
+                  <span style="white-space: pre-wrap; overflow-wrap: anywhere;" v-text="msg.text"></span>
                 </p>
-                <div v-if="reply_count[msg.post_id] !== 0">
-                <div style="justify-content: space-between; display: flex;">
+                <div class="row">
+                  <div class="d-inline-flex col justify-content-start">
+                  <div v-if="reply_count[msg.post_id] !== 0">
                   <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
                   :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
                   v-on:click="child_threads(msg.post_id)">
                   <span class="text-primary">[[ reply_count[msg.post_id] ]]件のコメントを表示する</span>
                 </button>
+                </div></div>
+                <div class="d-inline-flex col justify-content-end">
                   <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
                   data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
                   v-on:click="judge_thread(msg.post_id)">
                   <span class="text">コメントする</span>
-                </button></div>
-                  </div>
-                  <div v-else style="text-align: right;">
-                    <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
-                    v-on:click="judge_thread(msg.post_id)">
-                    <span class="text">コメントする</span>
-                  </button>
-                  </div>
+                </button>
+              </div>
+              </div>
                 <div class="collapse" :id="'a' + msg.post_id">
                   <!-- <div class="card card-body bg-light border-light"> -->
 

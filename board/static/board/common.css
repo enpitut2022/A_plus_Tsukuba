@@ -11,3 +11,17 @@ footer.footer {
     text-align: center;
     font-size: 7px;
 }
+
+.dropdown-menu {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+@media (max-width:768px) {
+    .dropdown-menu {
+        max-width: 90vw;
+        overflow-x: auto;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
