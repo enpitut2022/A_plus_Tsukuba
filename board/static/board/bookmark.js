@@ -10,14 +10,11 @@ const bookmark_toggle = new Vue({
         methods: {
             loadbookmark() {
                 const bookmark_key = "bookmark";
-                const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
-                console.log(bookmark_value);
-                
+                const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す                
                 let bookmark_json = {};
                 if(bookmark_value){
                         bookmark_json = JSON.parse(bookmark_value.split('=')[1]); //bookmark_valueをJSONに変換して取得
                 }
-                console.log(bookmark_json);
                 if(this.thread_id in bookmark_json){
                     this.checked = true;
                 }
@@ -41,9 +38,7 @@ const bookmark_toggle = new Vue({
 function setBookmark(thread_id, thread_title) {
         // load cookie
         const bookmark_key = "bookmark";
-        const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す
-        console.log(bookmark_value);
-        
+        const bookmark_value = document.cookie.split('; ').find(row => row.startsWith(bookmark_key)); //bookmarkが含まれる要素の配列を返す        
         let bookmark_json = {};
         if(bookmark_value){
                 bookmark_json = JSON.parse(bookmark_value.split('=')[1]); //bookmark_valueをJSONに変換して取得
@@ -51,8 +46,6 @@ function setBookmark(thread_id, thread_title) {
         // add bookmark
         bookmark_json[thread_id] = thread_title;
         setCookie(bookmark_key, bookmark_json);
-        console.log(bookmark_json); 
-        console.log(document.cookie);        
 }
 
 function deleteBookmark(thread_id){
@@ -65,9 +58,7 @@ function deleteBookmark(thread_id){
                 bookmark_json = JSON.parse(bookmark_value.split('=')[1]); //bookmark_valueをJSONに変換して取得
         }
         delete bookmark_json[thread_id]
-        setCookie(bookmark_key, bookmark_json);
-        console.log(bookmark_json);
-        
+        setCookie(bookmark_key, bookmark_json);        
 }
 
 const setCookie = (name, json)=>{
