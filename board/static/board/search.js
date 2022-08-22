@@ -12,6 +12,7 @@ new Vue({
     delimiters: ['[[', ']]'],   //必ず必要
     data: {
         results: {},
+        query: "",
         request_time : Date.now()
     },
     methods: {
@@ -25,12 +26,18 @@ new Vue({
             */
             const now = Date.now();
             this.request_time = now;
-            if (query == "") return;
+            if (query == "") {
+                this.results = {};
+                this.query = query;
+                return;
+            }
             const res = await axios.get(
                 `/api/search_subjects?q=${query}`
             );
-            if (this.request_time == now)
+            if (this.request_time == now) {
                 this.results = res.data;
+                this.query = query;
+            }
         },
     }
 })
