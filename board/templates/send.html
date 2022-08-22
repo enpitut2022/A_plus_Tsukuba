@@ -12,7 +12,7 @@
             <div class="cols" style="margin-left: 3%; margin-right:3%;">
               名前 :
               <input type="text" v-model="inputName" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
-                autofocus />
+              minlength="1" maxlength="40" />
               気持ち :
               <select name="emotion_type" class="form-select" v-model="selectEmotion">
                 <option value="0">非常事態(´•_•; )</option>
@@ -24,7 +24,7 @@
               </select>
               本文 :
               <textarea id="main_textarea" v-model="inputText" class="form-control" rows="15" type="text" id="input_message" autocomplete="off"
-                name="message"
+                name="message" minlength="1" maxlength="500"
                 placeholder="
     質問例)
     display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
