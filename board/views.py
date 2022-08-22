@@ -7,7 +7,7 @@ from django.views.generic import TemplateView, ListView
 
 class Index(ListView):
     def get(self, request, *args, **kwargs):
-        return redirect("about/")
+        return redirect("search/")
 
 
 class ThreadView(ListView):
