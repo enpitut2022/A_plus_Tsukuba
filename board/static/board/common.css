@@ -25,3 +25,19 @@ footer.footer {
         margin-left: auto;
     }
 }
+
+.bg-pink {
+    background-color: palevioletred;
+}
+
+.bg-orange {
+    background-color: orangered;
+}
+
+.bg-gray {
+    background-color: #444444
+}
+
+.bg-olive {
+    background-color: olive;
+}
