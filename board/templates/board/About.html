@@ -13,31 +13,176 @@
 
   <div id="main_container" class="container-fluid">
     <div id="about_container" class="container">
-        <div class="row justify-content-center">
-            <div class="col"><img src="{% static 'board/enpitA+.png' %}" alt=""></div>
+
+      <div class="container border-bottom">
+        <!--content-1-->
+        <div class="row">
+          <div class="col"><img src="{% static 'board/enpitA+about.png' %}" alt="img" class="mx-auto d-block"
+              style="width: 80%;"></div>
         </div>
         <div class="row">
-            <div class="col">
-            <hr size="5" width="80">
-            <h2>+つくばとは?</h2>
+          <div class="col">
+            <h2>A+つくばとは?</h2>
+
+            <div class="content">
+              <p>
+                <b>A+つくば</b>は
+                大学の課題を効率よく十分な品質で提出することができない
+                (<i>A+が取れない!!</i>)問題を解決したい
+                同じ講義に知り合いが少ない筑波大生向けの
+                筑波大生専用の匿名学習支援SNSです。
+              </p>
+              <p>
+                これは筑波大生専用の匿名SNSを実現することによって、
+                Yahoo知恵袋やTwitterとは違って
+                同じ大学内かつ匿名で協力して課題解決に取り組めます。
+              </p>
+              <p>
+                <b>わからない人同士で協力しあい、共にA+を目指しましょう！</b>
+              </p>
+            </div>
+
+          </div>
         </div>
-            [A+つくば] は
-            [大学の課題を効率よく十分な品質で提出することができない
-            (A+が取れない!!)問題]を解決したい
-            [同じ講義に知り合いが少ない筑波大生]向けの
-            [筑波大生専用の匿名学習支援SNS] です。
-            これは [認証機能付き匿名SNSを実現すること] によって、
-            [Yahoo知恵袋やTwitter] とは違って
-            [同じ大学内かつ匿名で相談して課題解決に取り組む] を実現できます。
-            
-        <div>
-            完全匿名性による議論
+      </div>
+      <!--content-疑問-->
+      <div class="container border-bottom">
+        <div class="row">
+          <div class="col">
+            <h2>こんな悩みありませんか？</h2>
+
+            <div class="content nayami-content">
+              <ul style="font-size: 1.5em; margin-top: auto; margin-bottom: auto;">
+                <li>大学の課題が解けないとき、<span style="color: red;">
+                    同じ大学内で協力してくれる人がいない！
+                  </span></li>
+                <li>既に
+                  <span style="color: blue;">先生に質問する機会を失ってしまった！</span>
+                </li>
+                <li>既存のサービスだと
+                  <span style="color: green;">自分のアカウントがばれて言い出しづらい！</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div>
-            
+        <div class="row">
+          <div class="col text-center">
+            <h5>その悩み、A+つくばで解決しよう！</h5>
+            <button type="button" class="btn btn-warning btn-lg fs-3 w-75" onclick="location.href = '/search/';">
+              講義スレッド検索へ進む
+            </button>
+          </div>
         </div>
+      </div>
+
+      <!--content-3-->
+      <div class="container border-bottom">
+        <div class="row">
+          <div class="col text-center">
+            <h2>A+つくばの特徴</h2>
+          </div>
+        </div>
+      </div>
+
+      <!--content-3-->
+      <div class="container border-bottom">
+        <div class="row">
+          <div class="col-md-6 img-hidden">
+
+            <!-- image -->
+            <img src="{% static 'board/enpitA+about.png' %}" alt="img" class="img-fluid">
+
+          </div>
+          <div class="col-md-6">
+            <h4>完全匿名性</h4>
+
+            <div class="content">
+              manabaとは違って匿名で質問でき、
+              かつYahoo知恵袋とも違い利用する人が筑波大生だけであるため安心できます。
+              これにより今までになかった深い議論を行うことができます。
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!--content-4-->
+      <div class="container border-bottom">
+        <div class="row">
+          <div class="col-md-6 img-hidden order-md-last">
+
+            <!-- image -->
+            <img src="{% static 'board/enpitA+about.png' %}" alt="img" class="img-fluid">
+
+          </div>
+
+          <div class="col-md-6 order-md-first">
+            <h4>今までにない掲示板</h4>
+
+            <div class="content">
+              世の中に出ている既存の匿名掲示板サービスとは違って
+              一般の人でも触りたくなるような優しいデザインを心がけました。
+              また、ページをリロードしなくても新しい投稿をリアルタイムで確認することが
+              できるのもこの『A+つくば』の特徴です。
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--content-5-->
+      <div class="container border-bottom">
+        <div class="row">
+
+          <div class="col-md-6">
+            <img src="{% static 'board/enpitA+about.png' %}" alt="img" class="img-fluid">
+            <!-- image -->
+          </div>
+
+          <div class="col-md-6">
+            <h4>こだわった投稿フォーム</h4>
+            <div class="content">
+              画面の横幅を有効活用して、大きめの入力フォームでストレスなく
+              入力・投稿でき、同時に既存の投稿や返信も見ることができます。さらに、
+              『A+つくば』ならではの感情表現機能により投稿者の気持ちを共有して、
+              相手に急いで回答して欲しい気持ちや感謝の気持ちなどを伝えることもできます。
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container border-bottom">
+        <div class="row">
+          <div class="col">
+                  <!-- content-6 -->
+      <h2 class="text-center">
+        みんなで集まろう22時！
+      </h2>
+      <div class="row">
+        <div class="col text-center">
+          <img src="{% static 'board/ieben-tokei.png' %}" alt="img" class="img-fluid">
+          <!-- image -->
+        </div>
+      </div>
+      <p class="lead" style="margin-bottom:30px;">
+         『A+つくば』開発チームの主観によりますと、筑波大生の3人に1人は大学の課題を21時
+      〜23時に行う傾向があることがわかりました。ゆえに、<b>22時に『A+つくば』を利用するとみんなで議論を深められるでしょう。</b>
+      </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h5>さあ、議論を始める準備はできましたか？</h5>
+            <button type="button" class="btn btn-warning btn-lg fs-3 w-75" onclick="location.href = '/search/';">
+              講義スレッド検索へ進む
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    
     {% include 'footer.html' %}
   </div>
 
