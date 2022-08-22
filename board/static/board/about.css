@@ -1,0 +1,9 @@
+.nayami-content {
+    border: 1px solid orangered;
+    background-color: white;
+}
+
+.border-bottom {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}

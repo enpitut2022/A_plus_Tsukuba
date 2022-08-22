@@ -41,11 +41,11 @@ const post_content = new Vue({
         getCSS(id) {
             const dict = {
                 0: 'badge rounded-pill bg-danger',
-                1: 'badge rounded-pill bg-secondary',
-                2: 'badge rounded-pill bg-success',
+                1: 'badge rounded-pill bg-olive',
+                2: 'badge rounded-pill bg-pink',
                 3: 'badge rounded-pill bg-primary',
-                4: `badge rounded-pill bg-info`,
-                5: 'badge rounded-pill bg-dark',
+                4: `badge rounded-pill bg-gray`,
+                5: 'badge rounded-pill bg-orange',
             };
 
             return dict[id];
@@ -55,10 +55,10 @@ const post_content = new Vue({
         getText(id) {
             const dict = {
                 0: '非常事態(´•_•; )',
-                1: 'じっくり(-ω-;)ｳｰﾝ',
+                1: '考え中(-ω-;)ｳｰﾝ',
                 2: '助かった(*´▽`人)',
                 3: '提案(^^)/~~~',
-                4: `よしよし('ω')`,
+                4: `ウンウン(´ー｀*)`,
                 5: '大丈夫？( *´艸｀)',
             };
 

@@ -18,6 +18,7 @@
               <child-component v-on:childevent="searchMethod"></child-component>
         </div> 
     </div>
+    <template v-if="query.length !== 0">
     <div class="row">
       <div class="col">
         <table class="table zebra-striping">
@@ -45,11 +46,26 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div v-if="results.length !== 0" class="col">
+        <template v-if="results.length === 500">
         上位500件のみ表示しています。
+        </template>
+      </div>
+      <div v-else class="col">
+        「[[ query ]]」を含む講義は見つかりませんでした。
       </div>
     </div>
     </div>
+  </template>
+  <template v-else>
+    <div class="container" style="margin-top: 30px;">
+      <div class="row">
+        <div class="col">
+          検索ワードが空の時に表示されるコンテナです。
+        </div>
+      </div>
+    </div>
+  </template>
     {% include 'footer.html' %}
   </div>
 
