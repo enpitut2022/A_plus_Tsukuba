@@ -37,3 +37,13 @@
     padding-top: 64px;
     margin-top:-64px;
 }
+
+#main_textarea {
+    height: 50vh;
+}
+
+@media (max-height: 500px) {
+   #main_textarea {
+        height: 30vh;
+    }
+}
