@@ -26,6 +26,7 @@ function isITF() {
         const expires = "expires=" + dateObject.toGMTString();
         const path = "path=/";
         document.cookie = "ITF=true" + "; " + expires + "; " + path;
+        location.href = "/about/";
     }
 
 }
