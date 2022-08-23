@@ -53,7 +53,7 @@
                 <tr v-for="sub in results">
                   <th class="none-md">[[sub.code]]</th>
                   <td><a :href="'/threads/' + sub.thread_id + '/'">[[sub.name]]</a></td>
-                  <td>[[sub.teachers]]</td>
+                  <td>[[sub.teachers | readmore(15, '...') ]]</td>
                   <td class="none-md">[[sub.subtype]]</td>
                   <td class="none-md">[[sub.schools]]</td>
                   <td class="none-md">[[sub.colleges]]</td>
@@ -78,16 +78,23 @@
       <div class="container" style="margin-top: 30px;">
 
         <div class="row">
-
-
           <div class="card-group">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">新しい質問🤗</h5>
                 <ol class="list-group list-group-flush">
                   {% for newpost in post_list %}
-                  <li class="list-group-item"><a href="{% url 'threads' newpost.thread_id %}">
-                      {{newpost.text | truncatechars:30}}</a></li>
+                  <li class="list-group-item">
+                    <span style="overflow-wrap: anywhere;">
+                      {{newpost.text | truncatechars:50}}
+                    </span>
+                    <br>
+                    <div class="newpost-thread text-end"> 
+                      <a href="{% url 'threads' newpost.thread_id %}">
+                        {{ newpost.thread.title | truncatechars:30}}
+                      </a>       
+                    </div>
+                    </li>
                   {% endfor %}
                 </ol>
               </div>
