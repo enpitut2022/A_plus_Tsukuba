@@ -1,3 +1,8 @@
+Vue.filter('readmore', function(text, length, suffix){
+    if (text.length < length) return text;
+    return text.substring(0, length) + suffix
+})
+
 Vue.component('child-component', {
     template: '<input id="search_input" v-model.trim="query" @input="onInput" type="text" class="form-control" placeholder="科目名を入力してください。">',
     methods: {
