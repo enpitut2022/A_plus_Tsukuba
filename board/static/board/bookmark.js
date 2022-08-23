@@ -19,8 +19,8 @@ const bookmark_toggle = new Vue({
                     this.checked = true;
                 }
             },
-            judge_checked(){
-                if(this.checked == false){
+            judge_checked(){              
+                if(this.checked == true){
                     setBookmark(this.thread_id, this.thread_title);
                 }
                 else{
@@ -44,7 +44,7 @@ function setBookmark(thread_id, thread_title) {
                 bookmark_json = JSON.parse(bookmark_value.split('=')[1]); //bookmark_valueをJSONに変換して取得
         }
         // add bookmark
-        bookmark_json[thread_id] = thread_title;
+        bookmark_json[thread_id] = encodeURI(thread_title);
         setCookie(bookmark_key, bookmark_json);
 }
 
