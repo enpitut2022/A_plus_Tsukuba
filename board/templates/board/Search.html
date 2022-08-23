@@ -83,9 +83,9 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">新しい質問🤗</h5>
-              <ol>
+              <ol class="list-group list-group-flush">
               {% for newpost in post_list %}
-                <li class="card-text"><a href="{% url 'threads' newpost.thread_id %}">{{newpost.text | truncatechars:30}}</a></li>
+                <li class="list-group-item"><a href="{% url 'threads' newpost.thread_id %}">{{newpost.text | truncatechars:30}}</a></li>
               {% endfor %}
               </ol>
             </div>
@@ -93,9 +93,9 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">非常事態のスレッドランキング🔥</h5>
-              <ol>
+              <ol class="list-group list-group-flush">
                 {% for tid, title, num  in ranking %}
-                  <li>
+                  <li class="list-group-item">
                     <a href="/threads/{{ tid }}/">
                     {{ title }} - {{ num }}
                   </a></li>
@@ -106,8 +106,8 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">便利リンク集🔗</h5>
-              <ul>
-                <li class="card-text"><a href="https://manaba.tsukuba.ac.jp/ct/home">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="https://manaba.tsukuba.ac.jp/ct/home">
                   manaba
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
@@ -115,7 +115,7 @@
                   </svg>
                 </a>
                 </li>
-                <li class="card-text"><a href="https://twins.tsukuba.ac.jp/campusweb/campusportal.do">
+                <li class="list-group-item"><a href="https://twins.tsukuba.ac.jp/campusweb/campusportal.do">
                   TWINS
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
@@ -123,7 +123,7 @@
                   </svg>
                 </a>
                 </li>
-              <li class="card-text"><a href="https://make-it-tsukuba.github.io/alternative-tsukuba-kdb/">
+              <li class="list-group-item"><a href="https://make-it-tsukuba.github.io/alternative-tsukuba-kdb/">
                 KdBもどき
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
@@ -132,7 +132,7 @@
               </a>
               </li>
               <br>
-              <li class="card-text"><a href="https://www.tulips.tsukuba.ac.jp/opac/user/top">
+              <li class="list-group-item"><a href="https://www.tulips.tsukuba.ac.jp/opac/user/top">
                 Tulips マイライブラリ
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
@@ -140,7 +140,7 @@
                 </svg>
                 </a>
               </li>
-              <li class="card-text"><a href="https://papercut-p01.u.tsukuba.ac.jp:9192/app?service=page/UserSummary">
+              <li class="list-group-item"><a href="https://papercut-p01.u.tsukuba.ac.jp:9192/app?service=page/UserSummary">
                 Webプリント（全学計算機）
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
@@ -148,7 +148,7 @@
                 </svg>
                 </a>
               </li>
-              <li class="card-text"><a href="https://view-con00.u.tsukuba.ac.jp/">
+              <li class="list-group-item"><a href="https://view-con00.u.tsukuba.ac.jp/">
                 リモートアクセス（全学計算機）
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
