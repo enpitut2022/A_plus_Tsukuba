@@ -93,6 +93,14 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">非常事態のスレッドランキング🔥</h5>
+              <ol>
+                {% for tid, title, num  in ranking %}
+                  <li>
+                    <a href="/threads/{{ tid }}/">
+                    {{ title }} - {{ num }}
+                  </a></li>
+                {% endfor %}
+              </ol>
             </div>
           </div>
           <div class="card">
