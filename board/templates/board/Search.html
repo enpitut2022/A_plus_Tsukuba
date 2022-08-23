@@ -13,11 +13,27 @@
   <div id="main_container" class="container-fluid">
     <div id="search_app">
     <div class="row">
-        <div class="col-12">
-          <h2>講義スレッド検索</h2>
+        <div class="col-12"> 
+          <div class="text-center img-hidden" style="margin-bottom: 15px;">
+            <img src="{% static 'board/enpitA+about.png' %}" alt="img" class="mx-auto d-block logo-img"
+            >
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </span>
               <child-component v-on:childevent="searchMethod"></child-component>
+          </div>
+              <div class="text-center" style="margin-bottom: 15px; margin-top: 15px;">
+                履修している講義スレッドに参加して、
+                <br class="sma">
+                協力してA+を目指そう！
+              </div>
         </div> 
     </div>
+    
     <template v-if="query.length !== 0">
     <div class="row">
       <div class="col">
@@ -59,10 +75,37 @@
   </template>
   <template v-else>
     <div class="container" style="margin-top: 30px;">
+      
       <div class="row">
-        <div class="col">
-          検索ワードが空の時に表示されるコンテナです。
+
+        
+        <div class="card-group">
+          <div class="card">
+            <img src="{% static 'board/about_image1.jpeg' %}" class="card-img-top" alt="newthreads">
+            <div class="card-body">
+              <h5 class="card-title">新しい質問が投げられたスレッド一覧🤗</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="{% static 'board/about_image2.jpeg' %}" class="card-img-top" alt="ranking">
+            <div class="card-body">
+              <h5 class="card-title">非常事態のスレッドランキング🔥</h5>
+              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="{% static 'board/about_image3.jpeg' %}" class="card-img-top" alt="link">
+            <div class="card-body">
+              <h5 class="card-title">リンク集🔗</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </template>
