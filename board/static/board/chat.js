@@ -155,3 +155,48 @@ const send_api = new Vue({
         },
     },
 });
+
+const share = new Vue({
+    el: '#col5_app',
+    data: {
+        api_check : navigator.share,
+        now_url: location.href,
+    },
+    delimiters: ['[[', ']]'],
+    methods: {
+        async share_thread() {
+            try {
+              await navigator.share({ title: document.title, url: "" });
+            } catch (error) {
+              console.error(error);
+            }
+          },
+        tweet() {
+            const url = "http://twitter.com/share?url=" + this.now_url + "&hashtags=Aplusつくば";
+            window.open(url, '_blank')
+        },
+        Line(){
+            const url = "https://social-plugins.line.me/lineit/share?url=" + this.now_url;
+            window.open(url, '_blank')
+        },
+        Discord(){
+            const url = "https://social-plugins.line.me/lineit/share?url=" + this.now_url;
+            window.open(url, '_blank')
+        },
+    },
+    mounted() {
+        console.log(this.api_check);
+        console.log(this.now_url);
+    }
+});
+/*
+let url = location.href
+    let snsLinks=$(".js-sns-link")
+    for(let i=0; i<snsLinks.length; i++){
+        let href=snsLinks.eq(i).attr('href');
+	    //
+        href=href.replace("u=","u="+url)     //face
+        href=href.replace("url=","url="+url) //twitter,LINE
+        snsLinks.eq(i).attr('href',href);
+    } */
+

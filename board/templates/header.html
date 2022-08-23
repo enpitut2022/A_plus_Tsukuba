@@ -34,7 +34,7 @@
                         </li>
                         <li v-else v-for="bookmark in bookmark_data">
                           <a :href="'/threads/' + bookmark[0]" class="dropdown-item">
-                            [[ bookmark[1] ]]
+                            [[ decodeURI(bookmark[1]) ]]
                           </a> 
                       </li>
                         

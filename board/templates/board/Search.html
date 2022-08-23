@@ -13,18 +13,34 @@
   <div id="main_container" class="container-fluid">
     <div id="search_app">
     <div class="row">
-        <div class="col-12">
-          <h2>講義スレッド検索</h2>
+        <div class="col-12"> 
+          <div class="text-center img-hidden" style="margin-bottom: 15px;">
+            <img src="{% static 'board/enpitA+about.png' %}" alt="img" class="mx-auto d-block logo-img"
+            >
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </span>
               <child-component v-on:childevent="searchMethod"></child-component>
+          </div>
+              <div v-if="query.length === 0" class="text-center" style="margin-bottom: 15px; margin-top: 15px;">
+                履修している講義スレッドに参加して、
+                <br class="sma">
+                協力してA+を目指そう！
+              </div>
         </div> 
     </div>
+    
     <template v-if="query.length !== 0">
     <div class="row">
       <div class="col">
         <table class="table zebra-striping">
           <thead>
             <tr>
-              <th scope="col" class="none-md">#</th>
+              <th scope="col" class="none-md">科目番号</th>
               <th scope="col" >科目名</th>
               <th scope="col">教員</th>
               <th scope="col" class="none-md">種類</th>
@@ -59,10 +75,92 @@
   </template>
   <template v-else>
     <div class="container" style="margin-top: 30px;">
+      
       <div class="row">
-        <div class="col">
-          検索ワードが空の時に表示されるコンテナです。
+
+        
+        <div class="card-group">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">新しい質問🤗</h5>
+              <ol class="list-group list-group-flush">
+              {% for newpost in post_list %}
+                <li class="list-group-item"><a href="{% url 'threads' newpost.thread_id %}">{{newpost.text | truncatechars:30}}</a></li>
+              {% endfor %}
+              </ol>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">非常事態のスレッドランキング🔥</h5>
+              <ol class="list-group list-group-flush">
+                {% for tid, title, num  in ranking %}
+                  <li class="list-group-item">
+                    <a href="/threads/{{ tid }}/">
+                    {{ title }} - {{ num }}
+                  </a></li>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">便利リンク集🔗</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="https://manaba.tsukuba.ac.jp/ct/home">
+                  manaba
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                  </svg>
+                </a>
+                </li>
+                <li class="list-group-item"><a href="https://twins.tsukuba.ac.jp/campusweb/campusportal.do">
+                  TWINS
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                  </svg>
+                </a>
+                </li>
+              <li class="list-group-item"><a href="https://make-it-tsukuba.github.io/alternative-tsukuba-kdb/">
+                KdBもどき
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+              </a>
+              </li>
+              <br>
+              <li class="list-group-item"><a href="https://www.tulips.tsukuba.ac.jp/opac/user/top">
+                Tulips マイライブラリ
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+                </a>
+              </li>
+              <li class="list-group-item"><a href="https://papercut-p01.u.tsukuba.ac.jp:9192/app?service=page/UserSummary">
+                Webプリント（全学計算機）
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+                </a>
+              </li>
+              <li class="list-group-item"><a href="https://view-con00.u.tsukuba.ac.jp/">
+                リモートアクセス（全学計算機）
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+                </a>
+              </li>
+              </ul>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </template>
