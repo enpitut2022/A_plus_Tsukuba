@@ -26,7 +26,7 @@
             </span>
               <child-component v-on:childevent="searchMethod"></child-component>
           </div>
-              <div class="text-center" style="margin-bottom: 15px; margin-top: 15px;">
+              <div v-if="query.length === 0" class="text-center" style="margin-bottom: 15px; margin-top: 15px;">
                 履修している講義スレッドに参加して、
                 <br class="sma">
                 協力してA+を目指そう！
@@ -40,7 +40,7 @@
         <table class="table zebra-striping">
           <thead>
             <tr>
-              <th scope="col" class="none-md">#</th>
+              <th scope="col" class="none-md">科目番号</th>
               <th scope="col" >科目名</th>
               <th scope="col">教員</th>
               <th scope="col" class="none-md">種類</th>
@@ -81,27 +81,74 @@
         
         <div class="card-group">
           <div class="card">
-            <img src="{% static 'board/about_image1.jpeg' %}" class="card-img-top" alt="newthreads">
             <div class="card-body">
-              <h5 class="card-title">新しい質問が投げられたスレッド一覧🤗</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h5 class="card-title">新しい質問🤗</h5>
+              <ul>
+              {% for newpost in post_list %}
+                <li>{{newpost.text}}</li>
+              {% endfor %}
+              </ul>
             </div>
           </div>
           <div class="card">
-            <img src="{% static 'board/about_image2.jpeg' %}" class="card-img-top" alt="ranking">
             <div class="card-body">
               <h5 class="card-title">非常事態のスレッドランキング🔥</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
           <div class="card">
-            <img src="{% static 'board/about_image3.jpeg' %}" class="card-img-top" alt="link">
             <div class="card-body">
-              <h5 class="card-title">リンク集🔗</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h5 class="card-title">便利リンク集🔗</h5>
+              <ul>
+                <li class="card-text"><a href="https://manaba.tsukuba.ac.jp/ct/home">
+                  manaba
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                  </svg>
+                </a>
+                </li>
+                <li class="card-text"><a href="https://twins.tsukuba.ac.jp/campusweb/campusportal.do">
+                  TWINS
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                  </svg>
+                </a>
+                </li>
+              <li class="card-text"><a href="https://make-it-tsukuba.github.io/alternative-tsukuba-kdb/">
+                KdBもどき
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+              </a>
+              </li>
+              <br>
+              <li class="card-text"><a href="https://www.tulips.tsukuba.ac.jp/opac/user/top">
+                Tulips マイライブラリ
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+                </a>
+              </li>
+              <li class="card-text"><a href="https://papercut-p01.u.tsukuba.ac.jp:9192/app?service=page/UserSummary">
+                Webプリント（全学計算機）
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+                </a>
+              </li>
+              <li class="card-text"><a href="https://view-con00.u.tsukuba.ac.jp/">
+                リモートアクセス（全学計算機）
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+                </a>
+              </li>
+              </ul>
             </div>
           </div>
         </div>

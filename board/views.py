@@ -29,5 +29,11 @@ class AboutView(TemplateView):
     template_name = "board/About.html"
 
 class SearchView(ListView):
+    """検索画面に新規投稿一覧を表示する"""
     template_name = "board/Search.html"
-    model = Subject
+    model = Post
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['post_list'] = self.model.objects.all().order_by('-created_at')[:10]
+        return context

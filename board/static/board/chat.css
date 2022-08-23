@@ -42,8 +42,13 @@
     height: 50vh;
 }
 
+.ad-box {
+    margin-bottom: 30px;
+    }
+
 @media (max-height: 500px) {
    #main_textarea {
         height: 30vh;
     }
 }
+
