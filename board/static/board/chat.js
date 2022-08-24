@@ -1,5 +1,14 @@
 let post_id_judge = null;
 
+function escapeHTML( string )
+{
+    /* 過信しないこと */
+    var pre = document.createElement('pre');
+    var text = document.createTextNode( string );
+    pre.appendChild(text);
+    return pre.innerHTML;
+}
+
 const post_content = new Vue({
     el: '#post_content',
     data: {
@@ -90,7 +99,11 @@ const post_content = new Vue({
                     this.$set(this.reply_count, pid, count);
                 }
             }
-        }
+        },
+        autolink(text) {
+            const etext = escapeHTML(text);
+            return etext.replace(/(https?:\/\/[^\s]*)/g, "<a href='$1'>$1</a>");
+        },
     },
     mounted() {
         this.loop();
