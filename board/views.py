@@ -24,6 +24,16 @@ class ThreadView(ListView):
         thread_title = Thread.objects.filter(id = thread_id).values()[0]["title"]
         context['thread_title'] = thread_title
         context['thread_id'] = thread_id
+
+        # 科目情報
+        sub_col = Subject.objects.filter(thread_id = thread_id).values()[0]
+        context['sub_title'] = sub_col["name"]
+        context['sub_teachers'] = sub_col["teachers"]
+        codes = ""
+        for col in Subject.objects.filter(thread_id = thread_id).values("code"):
+            codes += col["code"] + ", "
+        context['sub_codes'] = codes[:-2]
+
         return context
 
 

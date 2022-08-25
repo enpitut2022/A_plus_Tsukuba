@@ -1,5 +1,26 @@
 {% load static %}
 <div class="col-md-5" id="col5_app">
+  <h5>科目情報</h5>
+  <div class="row">
+    <div class="col">
+      <table class="table table-sm table-borderless" style="margin-left: 16px;">
+        <tbody>
+          <tr>
+            <th scope="row">科目名</th>
+            <td>{{ sub_title }}</td>
+          </tr>
+          <tr>
+            <th scope="row">科目番号</th>
+            <td>{{ sub_codes }}</td>
+          </tr>
+          <tr>
+            <th scope="row">担当教員</th>
+            <td>{{ sub_teachers }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <div class="row">
     <template v-if="api_check !== false">
       <div class="col text-center ad-box">
