@@ -71,7 +71,7 @@
                               </span>
                             </p>
                           <p class="lead">
-                            <span style="white-space: pre-wrap;" v-text="reply.text"></span>
+                            <span style="white-space: pre-wrap;" v-html="autolink(reply.text)"></span>
                           </p>
                         </div>
                         </div>
