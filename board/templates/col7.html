@@ -33,7 +33,7 @@
                 </span>
                 </h6>
                 <p class="lead">
-                  <span style="white-space: pre-wrap; overflow-wrap: anywhere;" v-html="autolink(msg.text)"></span>
+                  <span class="user-text" v-html="autolink(msg.text)"></span>
                 </p>
                 <div class="row">
                   <div class="d-inline-flex col justify-content-start">
@@ -71,7 +71,7 @@
                               </span>
                             </p>
                           <p class="lead">
-                            <span style="white-space: pre-wrap;" v-html="autolink(reply.text)"></span>
+                            <span class="user-text" v-html="autolink(reply.text)"></span>
                           </p>
                         </div>
                         </div>

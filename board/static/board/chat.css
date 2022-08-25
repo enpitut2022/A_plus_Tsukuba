@@ -71,3 +71,8 @@
     position: relative;
     bottom: 1.1px;
 }
+
+.user-text {
+    white-space: pre-wrap; 
+    overflow-wrap: anywhere;
+}
