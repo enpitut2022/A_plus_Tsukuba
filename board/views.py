@@ -61,7 +61,10 @@ class SearchView(ListView):
         groupby_data = target_data.values("post_id").annotate(total=Count("post_id"))
         for col in groupby_data:
             thread_id = Post.objects.filter(post_id=col["post_id"]).values("thread")[0]["thread"]
-            thread_dict[thread_id] += col["total"]
+            if thread_id in thread_dict.keys():
+                thread_dict[thread_id] += col["total"]
+            else:
+                thread_dict[thread_id] = col["total"]
         
         ranking = []
         ranking_nums = sorted(thread_dict.items(), key=lambda x:x[1], reverse=True)[:5]
