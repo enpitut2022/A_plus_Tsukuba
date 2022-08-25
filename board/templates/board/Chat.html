@@ -5,6 +5,9 @@
 <head>
   {% include 'html_head.html' %}
   <link rel="stylesheet" href="{% static 'board/chat.css' %}">
+  <title>{{ sub_title }} | A+つくば</title>
+  <meta property="og:title" content="{{ sub_title }} | A+つくば" />
+  <meta property="og:type" content="artcle" />
 </head>
 <body class="bg-light">
   {% include 'header.html' %}
