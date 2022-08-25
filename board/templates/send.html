@@ -29,12 +29,7 @@
               本文 :
               <textarea id="main_textarea" v-model="inputText" class="form-control" rows="15" type="text" id="input_message" autocomplete="off"
                 name="message" minlength="1" maxlength="500"
-                placeholder="
-    質問例)
-    display 関数を改良，表示方法を工夫し，2 分木の構造がよりわかりやすく表示する。という内容ですが、具体的な方法を思いつきません。何かヒントはありますでしょうか
-    
-    回答例)
-    私の方針として実際の木構造のように上に根を、下に向かって節点を表示させるという方法を取ろうと思って1 行に複数の文字を表示する必要があり、難しかったため実装できませんでした。しかし、左方向に90◦ 回転させた木構造なら横1 行に1 文字のみの出力で済むのでこの方法を採用した。"></textarea>
+                placeholder="投稿内容"></textarea>
               <div class="text-end">
                  残り [[ 500 - inputText.length ]] 文字               
               </div>
