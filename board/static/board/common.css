@@ -41,3 +41,13 @@ footer.footer {
 .bg-olive {
     background-color: olive;
 }
+
+.sma{
+    display: none;
+}
+
+@media (max-width:768px) {
+    .sma{
+        display: block;
+    }
+}

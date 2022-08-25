@@ -1,9 +1,9 @@
 {% load static %}
 <div class="fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(119, 0, 128);">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #319DA0;">
           <div class="container-fluid">
             <a class="navbar-brand" href="/">
-              <img src="{% static 'board/enpit.png' %}" alt="" width="30" height="30" class="d-inline-block align-text-top">
+              <img src="{% static 'board/new_logo_header.png' %}" alt="" width="30" height="30" class="d-inline-block align-text-top">
               A+つくば
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -34,7 +34,7 @@
                         </li>
                         <li v-else v-for="bookmark in bookmark_data">
                           <a :href="'/threads/' + bookmark[0]" class="dropdown-item">
-                            [[ bookmark[1] ]]
+                            [[ decodeURI(bookmark[1]) ]]
                           </a> 
                       </li>
                         

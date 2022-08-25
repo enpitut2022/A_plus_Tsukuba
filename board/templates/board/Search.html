@@ -5,6 +5,9 @@
 <head>
   {% include 'html_head.html' %}
   <link rel="stylesheet" href="{% static 'board/search.css' %}">
+  <title>A+つくば</title>
+  <meta property="og:title" content="A+つくば" />
+  <meta property="og:type" content="website" />
 </head>
 
 <body class="bg-light">
@@ -12,65 +15,228 @@
 
   <div id="main_container" class="container-fluid">
     <div id="search_app">
-    <div class="row">
-        <div class="col-12">
-          <h2>講義スレッド検索</h2>
-              <child-component v-on:childevent="searchMethod"></child-component>
-        </div> 
-    </div>
-    <template v-if="query.length !== 0">
-    <div class="row">
-      <div class="col">
-        <table class="table zebra-striping">
-          <thead>
-            <tr>
-              <th scope="col" class="none-md">#</th>
-              <th scope="col" >科目名</th>
-              <th scope="col">教員</th>
-              <th scope="col" class="none-md">種類</th>
-              <th scope="col" class="none-md">学群</th>
-              <th scope="col" class="none-md">学類</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="sub in results">
-              <th class="none-md">[[sub.code]]</th>
-              <td><a :href="'/threads/' + sub.thread_id + '/'">[[sub.name]]</a></td>
-              <td>[[sub.teachers]]</td>
-              <td class="none-md">[[sub.subtype]]</td>
-              <td class="none-md">[[sub.schools]]</td>
-              <td class="none-md">[[sub.colleges]]</td>
-        </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
-      <div v-if="results.length !== 0" class="col">
-        <template v-if="results.length === 500">
-        上位500件のみ表示しています。
-        </template>
-      </div>
-      <div v-else class="col">
-        「[[ query ]]」を含む講義は見つかりませんでした。
-      </div>
-    </div>
-    </div>
-  </template>
-  <template v-else>
-    <div class="container" style="margin-top: 30px;">
       <div class="row">
-        <div class="col">
-          検索ワードが空の時に表示されるコンテナです。
+        <div class="col-12">
+          <div class="text-center img-hidden" style="margin-bottom: 15px;">
+            <img src="{% static 'board/new_logo.png' %}" alt="img" class="mx-auto d-block logo-img">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewBox="0 0 16 16">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </span>
+            <child-component v-on:childevent="searchMethod"></child-component>
+          </div>
+          <div v-if="query.length === 0" class="text-center" style="margin-bottom: 15px; margin-top: 15px;">
+            履修している講義スレッドに参加して、
+            <br class="sma">
+            協力してA+を目指そう！
+          </div>
         </div>
       </div>
+
+      <template v-if="query.length !== 0">
+        <div class="row">
+          <div class="col">
+            <table class="table zebra-striping">
+              <thead>
+                <tr>
+                  <th scope="col" class="none-md">科目番号</th>
+                  <th scope="col">科目名</th>
+                  <th scope="col">教員</th>
+                  <th scope="col" class="none-md">種類</th>
+                  <th scope="col" class="none-md">学群</th>
+                  <th scope="col" class="none-md">学類</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="sub in results">
+                  <th class="none-md">[[sub.code]]</th>
+                  <td><a :href="'/threads/' + sub.thread_id + '/'">[[sub.name]]</a></td>
+                  <td>[[sub.teachers | readmore(15, '...') ]]</td>
+                  <td class="none-md">[[sub.subtype]]</td>
+                  <td class="none-md">[[sub.schools]]</td>
+                  <td class="none-md">[[sub.colleges]]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div v-if="results.length !== 0" class="col">
+            <template v-if="results.length === 500">
+              上位500件のみ表示しています。
+            </template>
+          </div>
+          <div v-else class="col">
+            「[[ query ]]」を含む講義は見つかりませんでした。
+          </div>
+        </div>
     </div>
-  </template>
+    </template>
+    <template v-else>
+      <div class="container" style="margin-top: 30px;">
+
+        <div class="row">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">新しい質問🤗</h5>
+                <ol class="list-group list-group-flush">
+                  {% for newpost in post_list %}
+                  <li class="list-group-item">
+                    <span style="overflow-wrap: anywhere;">
+                      {{newpost.text | truncatechars:50}}
+                    </span>
+                    <br>
+                    <div class="newpost-thread text-end"> 
+                      <a href="{% url 'threads' newpost.thread_id %}">
+                        {{ newpost.thread.title | truncatechars:30}}
+                      </a>       
+                    </div>
+                    </li>
+                  {% endfor %}
+                </ol>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">非常事態のスレッドランキング🔥</h5>
+                <ol class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <img src="{% static 'board/crown/f5-1.png' %}" alt="第1位" class="img-fluid" width="45px">
+                        <a href="/threads/{{ ranking.0.0 }}/">
+                          {{ ranking.0.1 | truncatechars:25}}</a>
+                      </div>
+                      <div>
+                        {{ ranking.0.2 }}件
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <img src="{% static 'board/crown/f5-2.png' %}" alt="第1位" class="img-fluid" width="45px">
+                        <a href="/threads/{{ ranking.1.0 }}/">
+                          {{ ranking.1.1 | truncatechars:25}}</a>
+                      </div>
+                      <div>
+                        {{ ranking.1.2 }}件
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <img src="{% static 'board/crown/f5-3.png' %}" alt="第1位" class="img-fluid" width="45px">
+                        <a href="/threads/{{ ranking.2.0 }}/">
+                          {{ ranking.2.1 | truncatechars:25}}</a>
+                      </div>
+                      <div>
+                        {{ ranking.2.2 }}件
+                      </div>
+                    </div>
+                  </li>
+                </ol>
+                <br>
+                <h5 class="card-title">運営からのお知らせℹ️</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    現在お知らせする情報はありません。
+                  </li>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">便利リンク集🔗</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a href="https://manaba.tsukuba.ac.jp/ct/home">
+                    🌱manaba
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                        <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="list-group-item"><a href="https://twins.tsukuba.ac.jp/campusweb/campusportal.do">
+                    🎓TWINS
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                        <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="list-group-item"><a href="https://make-it-tsukuba.github.io/alternative-tsukuba-kdb/">
+                    📒KdBもどき
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                        <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <br>
+                  <li class="list-group-item"><a href="https://www.tulips.tsukuba.ac.jp/opac/user/top">
+                    📚Tulips マイライブラリ
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                        <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="list-group-item"><a
+                      href="https://papercut-p01.u.tsukuba.ac.jp:9192/app?service=page/UserSummary">
+                      🖨️Webプリント（全学計算機）
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                        <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="list-group-item"><a href="https://view-con00.u.tsukuba.ac.jp/">
+                    💻リモートアクセス（全学計算機）
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                        <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </template>
     {% include 'footer.html' %}
   </div>
 
   {% include 'load_javascript.html' %}
-    <script src = "{% static 'board/search.js' %}"></script>
+  <script src="{% static 'board/search.js' %}"></script>
 </body>
 
 </html>

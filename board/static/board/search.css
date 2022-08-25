@@ -1,6 +1,19 @@
+.logo-img{
+    width: 20%;
+}
+
 @media (max-width: 768px) {
     /* md 以下の画面 */
     .none-md {
         display: none;
     }
+
+    .logo-img{
+        width: 80%;
+    }
 }
+
+.newpost-thread {
+    font-size: 0.5em;
+}
+
