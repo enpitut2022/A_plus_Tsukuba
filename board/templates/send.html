@@ -11,7 +11,7 @@
           <div class="rows">
             <div class="cols" style="margin-left: 3%; margin-right:3%;">
               名前 :
-              <input type="text" v-model="inputName" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
+              <input type="text" v-model.trim="inputName" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
               minlength="1" maxlength="40" />
               <template v-if="inputName.length === 0">
                 <span style="color:red">
@@ -27,7 +27,7 @@
                 <option value="4">ウンウン(´ー｀*)</option>
               </select>
               本文 :
-              <textarea id="main_textarea" v-model="inputText" class="form-control" rows="15" type="text" id="input_message" autocomplete="off"
+              <textarea id="main_textarea" v-model.trim="inputText" class="form-control" rows="15" type="text" id="input_message" autocomplete="off"
                 name="message" minlength="1" maxlength="500"
                 placeholder="投稿内容"></textarea>
               <div class="text-end">
