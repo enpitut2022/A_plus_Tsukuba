@@ -3,6 +3,12 @@
     background-color: white;
 }
 
+.nayami-content > ul{
+    font-size: 1.5em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .border-bottom {
     padding-bottom: 15px;
     margin-bottom: 15px;
