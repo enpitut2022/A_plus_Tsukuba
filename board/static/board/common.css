@@ -42,12 +42,12 @@ footer.footer {
     background-color: olive;
 }
 
-.sma{
+.mobile_only{
     display: none;
 }
 
 @media (max-width:768px) {
-    .sma{
+    .mobile_only{
         display: block;
     }
 }
