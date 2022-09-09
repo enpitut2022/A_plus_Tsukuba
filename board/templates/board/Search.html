@@ -15,6 +15,8 @@
 
   <div id="main_container" class="container-fluid">
     <div id="search_app">
+
+      <!-- ロゴ・検索ボックス（常時表示）-->
       <div class="row">
         <div class="col-12">
           <div class="text-center img-hidden" style="margin-bottom: 15px;">
@@ -38,28 +40,29 @@
         </div>
       </div>
 
+      <!-- 検索結果（検索ボックスに文字が入力されているときのみ表示） -->
       <template v-if="query">
         <div class="row">
           <div class="col">
             <table class="table zebra-striping">
               <thead>
                 <tr>
-                  <th scope="col" class="none-md">科目番号</th>
+                  <th scope="col" class="pc-only">科目番号</th>
                   <th scope="col">科目名</th>
                   <th scope="col">教員</th>
-                  <th scope="col" class="none-md">種類</th>
-                  <th scope="col" class="none-md">学群</th>
-                  <th scope="col" class="none-md">学類</th>
+                  <th scope="col" class="pc-only">種類</th>
+                  <th scope="col" class="pc-only">学群</th>
+                  <th scope="col" class="pc-only">学類</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="sub in results">
-                  <th class="none-md">[[sub.code]]</th>
+                  <td class="pc-only fw-bold">[[sub.code]]</td>
                   <td><a :href="'/threads/' + sub.thread_id + '/'">[[sub.name]]</a></td>
                   <td>[[readmoreFilter(sub.teachers, 15, "...")]]</td>
-                  <td class="none-md">[[sub.subtype]]</td>
-                  <td class="none-md">[[sub.schools]]</td>
-                  <td class="none-md">[[sub.colleges]]</td>
+                  <td class="pc-only">[[sub.subtype]]</td>
+                  <td class="pc-only">[[sub.schools]]</td>
+                  <td class="pc-only">[[sub.colleges]]</td>
                 </tr>
               </tbody>
             </table>
@@ -76,9 +79,10 @@
           </div>
         </div>
       </template>
+
+      <!-- 情報カード（検索ボックスが空のときのみ表示） -->
       <template v-else>
         <div class="container" style="margin-top: 30px;">
-
           <div class="row">
             <div class="card-group">
               <div class="card">
@@ -227,7 +231,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </template>
