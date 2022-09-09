@@ -2,9 +2,9 @@ Vue.createApp({
     delimiters: ['[[', ']]'],
     data() {
         return {
-            results: {},
-            query: "",
-            latest_request_time : Date.now()
+            results: {},                        //検索結果
+            query: "",                          //検索キーワード
+            latest_request_time : Date.now()    //最新の検索実行要求時刻
         };
     },
     methods: {
