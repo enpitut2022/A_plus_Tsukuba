@@ -14,7 +14,7 @@ const post_content = new Vue({
     data: {
         message: null,
         child_message: {},
-        thread_id: document.getElementById('thread_num').value,
+        thread_id: document.getElementById('thread_id').value,
         post_id: null,
         reply_count: {}
     },
@@ -122,7 +122,7 @@ const send_api = new Vue({
         inputName: "名無し",
         selectEmotion: 1,
         inputText: "",
-        thread_id: document.getElementById('thread_num').value,
+        thread_id: document.getElementById('thread_id').value,
     },
     delimiters: ['[[', ']]'],
     methods: {
