@@ -109,6 +109,11 @@ Vue.createApp({
                 }
             }
         },
+        onCommentButtonClick (post_id) {
+            //コメントするボタンが押されるとき
+            //グローバル空間のCHATAPPに返信先を書き込む
+            CHATAPP.reply_to = post_id;
+        }
     },
     mounted() {
         this.loop();
