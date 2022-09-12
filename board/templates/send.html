@@ -1,6 +1,6 @@
 <div id="send_app">
   <button class="btn btn-warning comment-btn send-btn" type="button" data-bs-toggle="offcanvas"
-    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" @click="onSendButtonClick">質問する</button>
+    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" v-on:click="onSendButtonClick">質問する</button>
 
   <div class="offcanvas offcanvas-end offcanvas-div" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
     id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -34,7 +34,7 @@
         </div>
         <br>
         <input type="button" class="form-control btn btn-primary" value="投稿する" data-bs-dismiss="offcanvas"
-          @click="onPostButtonClick" />
+          v-on:click="onPostButtonClick" />
       </div>
     </div>
   </div>
