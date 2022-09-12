@@ -32,7 +32,10 @@
       <!-- あるサブスレッドの表示 -->
       <div :id="'post_box' + st.post_id" class="post_anker"></div>
       <div class="post_box">
-        <h6>[[ st.sender_name ]]
+        <h6>
+          <span class="user-text">
+              [[ st.sender_name ]]
+          </span>
           <span :class="getEmotionBadgeClass(st.emotion)">
               [[ getEmotionText(st.emotion) ]]
           </span>
@@ -78,7 +81,10 @@
             <div class="cols">
               <div v-for="reply in replies[st.post_id]" :key="reply.reply_id">
                 <div class="post_box reply_box">
-                  <p class="username">[[ reply.sender_name ]]
+                  <p class="username">
+                    <span class="user-text">
+                      [[ reply.sender_name ]]
+                    </span>
                     <span :class="getEmotionBadgeClass(reply.emotion)">
                       [[ getEmotionText(reply.emotion) ]]
                     </span>
