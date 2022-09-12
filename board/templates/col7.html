@@ -1,88 +1,107 @@
-<input type="hidden" id="thread_num" value="{{ thread_id }}" />
+<input type="hidden" id="thread_id" value="{{ thread_id }}" />
 <input type="hidden" id="thread_title" value="{{ thread_title }}" />
 <div class="col-md-7 bg-light">
+  <div class="row">
+    <div class="col-lg-9">
+      <h2>{{ thread_title }}</h2>
+    </div>
+    <div id="bookmark_toggle" class="col-lg-3 text-end">
+      <input type="checkbox" class="btn-check" id="bookmark-btn-check-outlined" autocomplete="off" v-model="checked"
+        v-on:change="judge_checked();" style="cursor: pointer;">
+      <label class="btn btn-outline-success" for="bookmark-btn-check-outlined">
+        <svg v-if="checked === true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+        </svg>
+        <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+          <path
+            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z" />
+        </svg>
+        ブックマーク
+      </label>
+    </div>
+  </div>
+
+  <div id="post_app" class="content">
+    <!-- すべてのサブスレッドのv-for -->
+    <div v-for="st in subthreads" :key="st.post_id" class="mb-4">
+      <!-- あるサブスレッドの表示 -->
+      <div :id="'post_box' + st.post_id" class="post_anker"></div>
+      <div class="post_box">
+        <h6>[[ st.sender_name ]]
+          <span :class="getEmotionBadgeClass(st.emotion)">
+              [[ getEmotionText(st.emotion) ]]
+          </span>
+          <span class="ms-3 text-gray-800">
+            <small><small>
+                投稿日: [[ formatTimeString(st.created_at) ]]
+            </small></small>
+          </span>
+        </h6>
+        <p class="lead">
+          <span class="user-text" 
+                v-html="autoLinkFilter(st.text)"></span>
+        </p>
+        <!-- あるサブスレッドへの返信 -->
         <div class="row">
-          <div class="col-lg-9">
-              <h2>{{ thread_title }}</h2>
+          <div class="d-inline-flex col justify-content-start">
+            <div v-if="getReplyCount(st.post_id) !== 0">
+              <!-- 返信がゼロ件でないなら -->
+              <button
+                class="btn dropdown-toggle"
+                type="button" 
+                data-bs-toggle="collapse"
+                :data-bs-target="'#reply_box' + st.post_id"
+                aria-expanded="false"
+                aria-controls="collapse">
+                <span class="text-primary">
+                  [[ getReplyCount(st.post_id) ]]件のコメントを表示する
+                </span>
+              </button>
+            </div>
           </div>
-          <div id="bookmark_toggle" class="col-lg-3 text-end">
-              <input type="checkbox" class="btn-check" id="bookmark-btn-check-outlined" autocomplete="off" v-model="checked" 
-              v-on:change="judge_checked();" style="cursor: pointer;">
-              <label class="btn btn-outline-success" for="bookmark-btn-check-outlined">
-                  <svg v-if="checked === true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-                  </svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
-                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                    <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
-                  </svg>
-                ブックマーク
-              </label>
+          <div class="d-inline-flex col justify-content-end">
+            <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"
+              v-on:click="onCommentButtonClick(st.post_id)">
+              <span class="text">コメントする</span>
+            </button>
           </div>
         </div>
-
-            <div id="post_content" class="content">
-              <div v-for="msg in message.data" :key="msg.post_id" class="mb-4">
-                <div :id="'post_box' + msg.post_id" class="post_anker"></div>
-                <div class="post_box">
-                <h6 >[[ msg.sender_name ]] <span :class="getCSS(msg.emotion)">[[ getText(msg.emotion) ]]</span>
-                  <span class="ms-3 text-gray-800">
-                  <small><small>
-                    投稿日: [[ formatTimeString(msg.created_at) ]]
-                  </small></small>
-                </span>
-                </h6>
-                <p class="lead">
-                  <span class="user-text" v-html="autolink(msg.text)"></span>
-                </p>
-                <div class="row">
-                  <div class="d-inline-flex col justify-content-start">
-                  <div v-if="reply_count[msg.post_id] !== 0">
-                  <button class="btn dropdown-toggle" type="button" data-bs-toggle="collapse"
-                  :data-bs-target="'#a' + msg.post_id" aria-expanded="false" aria-controls="collapseExample"
-                  v-on:click="child_threads(msg.post_id)">
-                  <span class="text-primary">[[ reply_count[msg.post_id] ]]件のコメントを表示する</span>
-                </button>
-                </div></div>
-                <div class="d-inline-flex col justify-content-end">
-                  <button class="btn btn-primary comment-btn" type="button" data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" 
-                  v-on:click="judge_thread(msg.post_id)">
-                  <span class="text">コメントする</span>
-                </button>
-              </div>
-              </div>
-                <div class="collapse" :id="'a' + msg.post_id">
-                  <!-- <div class="card card-body bg-light border-light"> -->
-
-                    <div class="rows">
-                      <div class="cols">
-                        <div v-for="reply in child_message[msg.post_id]" :key="reply.reply_id">
-                          <div class="post_box reply_box">
-                          <p class="username">[[ reply.sender_name ]]
-                  
-                            <span :class="getCSS(reply.emotion)">[[
-                              getText(reply.emotion)
-                              ]]</span>
-                              <span class="ms-3 text-gray-800">
-                              <small><small>
-                                投稿日: [[ formatTimeString(reply.created_at) ]]
-                              </small></small>
-                              </span>
-                            </p>
-                          <p class="lead">
-                            <span class="user-text" v-html="autolink(reply.text)"></span>
-                          </p>
-                        </div>
-                        </div>
-                        <div style="text-align: right">
-                        <a :href="'#post_box' + msg.post_id">コメントの先頭に戻る</a> 
-                      </div>
-                      </div>
-                    </div>
-                  <!-- </div> -->
+        <!-- 返信の表示 -->
+        <div class="collapse" :id="'reply_box' + st.post_id">
+          <div class="rows">
+            <div class="cols">
+              <div v-for="reply in replies[st.post_id]" :key="reply.reply_id">
+                <div class="post_box reply_box">
+                  <p class="username">[[ reply.sender_name ]]
+                    <span :class="getEmotionBadgeClass(reply.emotion)">
+                      [[ getEmotionText(reply.emotion) ]]
+                    </span>
+                    <span class="ms-3 text-gray-800">
+                      <small><small>
+                          投稿日: 
+                          [[ formatTimeString(reply.created_at) ]]
+                      </small></small>
+                    </span>
+                  </p>
+                  <p class="lead">
+                    <span class="user-text"
+                          v-html="autoLinkFilter(reply.text)"></span>
+                  </p>
                 </div>
               </div>
+              <div style="text-align: right">
+                <a :href="'#post_box' + st.post_id">コメントの先頭に戻る</a>
+              </div>
             </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>

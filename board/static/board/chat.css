@@ -19,6 +19,9 @@
 .send-btn {
     width: 85px;
     height: 45px;
+    bottom: 30px;
+    right: 20px;
+    position:fixed;
 }
 
 @media (min-width: 768px) {
@@ -44,7 +47,7 @@
 
 .ad-box {
     margin-bottom: 30px;
-    }
+}
 
 @media (max-height: 500px) {
    #main_textarea {
@@ -75,4 +78,9 @@
 .user-text {
     white-space: pre-wrap; 
     overflow-wrap: anywhere;
+}
+
+.form-side-margin {
+    margin-left: 3%;
+    margin-right:3%;
 }

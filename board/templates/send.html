@@ -1,41 +1,41 @@
-<div id="send_message">
-        <button class="btn btn-warning comment-btn send-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-          aria-controls="offcanvasScrolling" style="position:fixed; bottom: 30px; right: 20px;" v-on:click="judge_thread()">質問する</button>
+<div id="send_app">
+  <button class="btn btn-warning comment-btn send-btn" type="button" data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" v-on:click="onSendButtonClick">質問する</button>
 
+  <div class="offcanvas offcanvas-end offcanvas-div" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+    id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
 
-
-        <div class="offcanvas offcanvas-end offcanvas-div" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-          id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          <div class="rows">
-            <div class="cols" style="margin-left: 3%; margin-right:3%;">
-              名前 :
-              <input type="text" v-model.trim="inputName" id="input_name" class="form-control" autocomplete="off" value="名無し" name="username"
-              minlength="1" maxlength="40" />
-              <template v-if="inputName.length === 0">
-                <span style="color:red">
-                  名前は必ず入力してください。                </span><br>
-              </template>
-              気持ち :
-              <select name="emotion_type" class="form-select" v-model="selectEmotion">
-                <option value="0">非常事態(´•_•; )</option>
-                <option value="1">考え中(-ω-;)ｳｰﾝ</option>
-                <option value="2">助かった(*´▽`人)</option>
-                <option value="3">提案(^^)/~~~</option>
-                <option value="5">大丈夫？( *´艸｀)</option>
-                <option value="4">ウンウン(´ー｀*)</option>
-              </select>
-              本文 :
-              <textarea id="main_textarea" v-model.trim="inputText" class="form-control" rows="15" type="text" id="input_message" autocomplete="off"
-                name="message" minlength="1" maxlength="500"
-                placeholder="投稿内容"></textarea>
-              <div class="text-end">
-                 残り [[ 500 - inputText.length ]] 文字               
-              </div>
-              <br>
-              <input type="button" class="form-control btn btn-primary" id="submit_message" value="投稿する" data-bs-dismiss="offcanvas" v-on:click="send_message()" />
-            </div>
-          </div>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="rows">
+      <div class="cols form-side-margin">
+        名前 :
+        <input type="text" v-model.trim="inputName" class="form-control" autocomplete="off" minlength="1"
+          maxlength="40" />
+        <template v-if="inputName.length === 0">
+          <span style="color:red">
+            名前は必ず入力してください。
+          </span>
+          <br />
+        </template>
+        気持ち :
+        <select class="form-select" v-model="selectEmotion">
+          <option value="0">非常事態(´•_•; )</option>
+          <option value="1">考え中(-ω-;)ｳｰﾝ</option>
+          <option value="2">助かった(*´▽`人)</option>
+          <option value="3">提案(^^)/~~~</option>
+          <option value="5">大丈夫？( *´艸｀)</option>
+          <option value="4">ウンウン(´ー｀*)</option>
+        </select>
+        本文 :
+        <textarea v-model.trim="inputText" class="form-control" rows="15" type="text" autocomplete="off" name="message"
+          minlength="1" maxlength="500" placeholder="投稿内容"></textarea>
+        <div class="text-end">
+          残り [[ 500 - inputText.length ]] 文字
         </div>
+        <br>
+        <input type="button" class="form-control btn btn-primary" value="投稿する" data-bs-dismiss="offcanvas"
+          v-on:click="onPostButtonClick" />
+      </div>
+    </div>
+  </div>
 </div>
