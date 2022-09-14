@@ -1,5 +1,5 @@
 const BOOK_MARK = {}
-BOOK_MARK.EXPIRES = 365; //DAYS
+BOOK_MARK.EXPIRES = 365 * 5; //DAYS
 
 BOOK_MARK.getCookies = function () { // return (JSON)object not (JSON)string
     const load_json_string = Cookies.get('bookmark');
