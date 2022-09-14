@@ -1,5 +1,5 @@
 const BOOK_MARK = {}
-BOOK_MARK.EXPIRES = 365 * 5; //DAYS
+BOOK_MARK.EXPIRES = 365 * 6; // Bachelor and Master period
 
 BOOK_MARK.getCookies = function () { // return (JSON)object not (JSON)string
     const load_json_string = Cookies.get('bookmark');
