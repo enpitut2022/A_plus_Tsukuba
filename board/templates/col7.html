@@ -6,11 +6,8 @@
       <h2>{{ thread_title }}</h2>
     </div>
     <div id="bookmark_toggle" class="col-lg-3 text-end">
-      <input type="checkbox" class="btn-check" id="bookmark-btn-check-outlined" autocomplete="off" v-model="checked"
+      <input type="checkbox" class="btn-check" id="bookmark-btn-check-outlined" autocomplete="off" v-bind:checked="j_checked"
         v-on:change="judge_checked" style="cursor: pointer;">
-        <!-- <input type="checkbox" class="btn-check" id="bookmark-btn-check-outlined" autocomplete="off" v-model="checked"
-        style="cursor: pointer;"> -->
-        <!-- <bookmark-input v-model="checked"></bookmark-input> -->
       <label class="btn btn-outline-success" for="bookmark-btn-check-outlined">
         <svg v-if="checked === true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
           class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
