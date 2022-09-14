@@ -2,7 +2,7 @@ Vue.createApp({
     delimiters: ['[[', ']]'],
     data() {
         return {
-            j_checked: false,
+            bookmarkBtn_checked: false,
             thread_id: document.getElementById('thread_id').value,
             thread_title: document.getElementById('thread_title').value,
         }
@@ -12,12 +12,12 @@ Vue.createApp({
             const bookmark_json = BOOK_MARK.getCookies();
 
             if (this.thread_id in bookmark_json) {
-                this.j_checked = true;
+                this.bookmarkBtn_checked = true;
             }
         },
-        judge_checked() {
-            this.j_checked = !this.j_checked;
-            if (this.j_checked) {
+        onBookmarkBtnChange() {
+            this.bookmarkBtn_checked = !this.bookmarkBtn_checked;
+            if (this.bookmarkBtn_checked) {
                 BOOK_MARK.setBookmark(this.thread_id, this.thread_title);
             } else {
                 BOOK_MARK.deleteBookmark(this.thread_id);
