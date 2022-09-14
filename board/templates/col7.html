@@ -5,10 +5,6 @@
     <div class="col-lg-9">
       <h2>{{ thread_title }}</h2>
     </div>
-    <div id="app">
-      <input type="checkbox" id="name" v-model="agree" />
-      <div>こんにちは[[agree]]</div>
-    </div>
     <div id="bookmark_toggle" class="col-lg-3 text-end">
       <input type="checkbox" class="btn-check" id="bookmark-btn-check-outlined" autocomplete="off" v-model="checked"
         v-on:change="judge_checked" style="cursor: pointer;">
