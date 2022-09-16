@@ -40,6 +40,12 @@ class ThreadView(ListView):
 class AboutView(TemplateView):
     template_name = "board/About.html"
 
+class TermsView(TemplateView):
+    template_name = "board/Terms.html"
+
+class PrivacyView(TemplateView):
+    template_name = "board/Privacy.html"
+
 class SearchView(ListView):
     """検索画面に新規投稿一覧を表示する"""
     template_name = "board/Search.html"
