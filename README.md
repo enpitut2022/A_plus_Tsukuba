@@ -10,7 +10,7 @@ A+つくばは、筑波大学情報学群が開講する
 学生有志による私的なプロジェクトとして開発を行っています。
 
 ## サービスのURL
-https://a-plus-tsukuba.azurewebsites.net/
+https://aplus-tsukuba.net/
 
 ## ライセンス等
 プロジェクトに含まれるファイルの内`kdb.json`は
