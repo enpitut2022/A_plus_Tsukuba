@@ -25,8 +25,14 @@
   </div> 
 
   {% include 'load_javascript.html' %}
-  <script src="{% static 'board/chat.js' %}"></script>
-  <script src="{% static 'board/bookmark.js' %}"></script>
+  <script>
+    const CHATAPP = {};
+    CHATAPP.reply_to = null;
+  </script>
+  <script src="{% static 'board/col7.js' %}"></script>
+  <script src="{% static 'board/send.js' %}"></script>
+  <script src="{% static 'board/col5.js' %}"></script>
+  <script src="{% static 'board/bookmark_btn.js' %}"></script>
 </body>
 
 </html>

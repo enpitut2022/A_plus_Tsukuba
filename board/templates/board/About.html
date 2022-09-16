@@ -16,21 +16,22 @@
   <div id="main_container" class="container-fluid">
     <div id="about_container" class="container">
 
-      <div class="container border-bottom">
-        <!--content-1-->
-        <div class="row">
-          <div class="col"><img src="{% static 'board/new_logo.png' %}" alt="img" class="mx-auto d-block"
-              style="width: 80%;"></div>
-        </div>
-      </div>
-      <!--content-疑問-->
+      <!-- about主要画像 -->
       <div class="container border-bottom">
         <div class="row">
           <div class="col">
-            <h2 class="text-center">こんな悩みありませんか？</h2>
+            <img src="{% static 'board/new_logo.png' %}" alt="img" class="mx-auto d-block w-75">
+          </div>
+        </div>
+      </div>
 
+      <!--content-疑問-->
+      <div class="container border-bottom">
+        <div class="row">
+          <div class="col mb-4">
+            <h2 class="text-center">こんな悩みありませんか？</h2>
             <div class="content nayami-content">
-              <ul style="font-size: 1.5em; margin-top: auto; margin-bottom: auto;">
+              <ul>
                 <li>大学の課題が解けないとき、<span style="color: red;">
                     同じ大学内で協力してくれる人がいない！
                   </span></li>
@@ -45,18 +46,18 @@
           </div>
         </div>
         <div class="row">
-          <div class="col text-center" style="margin-top: 30px;">
+          <div class="col text-center">
             <h5>その悩み、A+つくばで解決しよう！</h5>
             <button type="button" class="btn btn-warning btn-lg fs-3 w-75" onclick="location.href = '/search/';">
               講義スレッド
-              <br class="sma">
+              <br class="mobile-only">
               検索へ進む
             </button>
           </div>
         </div>
       </div>
 
-      <!--content-3-->
+      <!--特徴見出し-->
       <div class="container border-bottom">
         <div class="row">
           <div class="col text-center">
@@ -65,105 +66,80 @@
         </div>
       </div>
 
-      <!--content-3-->
-
+      <!--特徴-1-->
       <div class="container border-bottom">
         <div class="row align-items-center">
-          <div class="col-md-6 img-hidden feature-img">
-
-            <!-- image -->
+          <div class="col-md-6 feature-img">
             <img src="{% static 'board/about_image1.jpeg' %}" alt="img" class="img-fluid">
-
           </div>
           <div class="col-md-6">
             <h4>完全匿名性</h4>
-
-            <div class="content">
+            <p>
               manabaとは違って匿名で質問でき、
               かつYahoo知恵袋とも違い利用する人が筑波大生だけであるため安心できます。
               これにより今までになかった深い議論を行うことができます。
-            </div>
+            </p>
           </div>
 
         </div>
       </div>
 
 
-      <!--content-4-->
+      <!--特徴-2-->
       <div class="container border-bottom">
         <div class="row align-items-center">
-          <div class="col-md-6 img-hidden order-md-last feature-img">
-
-            <!-- image -->
+          <div class="col-md-6 order-md-last feature-img">
             <img src="{% static 'board/new_about_image2.jpeg' %}" alt="img" class="img-fluid">
-
           </div>
-
           <div class="col-md-6 order-md-first">
             <h4>今までにない掲示板</h4>
-
-            <div class="content">
+            <p>
               世の中に出ている匿名掲示板サービスとは違って
               誰でも触りたくなるような優しいデザインを心がけました。
               また、ページをリロードしなくても新しい投稿をリアルタイムで確認することが
               できるのもこの『A+つくば』の特徴です。
-            </div>
-
+            </p>
           </div>
         </div>
       </div>
 
-      <!--content-5-->
+      <!--特徴-3-->
       <div class="container border-bottom">
         <div class="row align-items-center">
-
-          <div class="col-md-6 img-hidden feature-img">
+          <div class="col-md-6 feature-img">
             <img src="{% static 'board/new_about_image3.jpg' %}" alt="img" class="img-fluid">
-            <!-- image -->
           </div>
-
           <div class="col-md-6">
             <h4>こだわった投稿フォーム</h4>
-            <div class="content">
+            <p>
               画面の横幅を有効活用して、大きめの入力フォームでストレスなく
               入力・投稿でき、同時に既存の投稿や返信も見ることができます。さらに、
               『A+つくば』ならではの感情表現機能により投稿者の気持ちを共有して、
               相手に急いで回答して欲しい気持ちや感謝の気持ちなどを伝えることもできます。
-            </div>
+            </p>
           </div>
-
         </div>
       </div>
 
+      <!-- みんなで集まろう22時！ -->
       <div class="container border-bottom">
         <div class="row">
           <div class="col">
-                  <!-- content-6 -->
-      <h2 class="text-center">
-        みんなで集まろう22時！
-      </h2>
-      <div class="row">
-        <div class="col text-center">
-          <img src="{% static 'board/ieben-tokei-hukidashi.png' %}" alt="img" class="img-fluid">
-          <!-- image -->
-        </div>
-      </div>
-      <p class="lead text-center">
-         『A+つくば』開発チームの主観によりますと、筑波大生の3人に1人は大学の課題を21時
-      〜23時に行う傾向があることがわかりました。</p>
-      <p class="lead text-center" style="margin-bottom:30px;">
-      ゆえに、<b>22時に『A+つくば』を利用するとみんなで議論を深められるでしょう。</b>
-      </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col text-center">
-            <h5>さあ、議論を始める準備はできましたか？</h5>
-            <button type="button" class="btn btn-warning btn-lg fs-3 w-75" onclick="location.href = '/search/';">
-              講義スレッド
-              <br class="sma">
-              検索へ進む
-            </button>
+            <div class="text-center">
+              <h2>みんなで集まろう22時！</h2>
+              <img src="{% static 'board/ieben-tokei-hukidashi.png' %}" alt="img" class="img-fluid">
+              <p class="lead mb-4">
+                『A+つくば』開発チームの主観によりますと、筑波大生の3人に1人は大学の課題を21時
+                〜23時に行う傾向があることがわかりました。<br>
+                ゆえに、<b>22時に『A+つくば』を利用するとみんなで議論を深められるでしょう。</b>
+              </p>
+              <h5>さあ、議論を始める準備はできましたか？</h5>
+              <button type="button" class="btn btn-warning btn-lg fs-3 w-75" onclick="location.href = '/search/';">
+                講義スレッド
+                <br class="mobile-only">
+                検索へ進む
+              </button>
+            </div>
           </div>
         </div>
       </div>
