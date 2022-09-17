@@ -1,4 +1,7 @@
 # A_plus_Tsukuba  
+
+https://www.youtube.com/watch?v=dtbBatKRBvc
+
 A+つくばは大学の課題を効率よく十分な品質で提出することができない (A+が取れない!!)問題を解決したい 同じ講義に知り合いが少ない筑波大生向けの筑波大生専用の匿名学習支援SNSです。
 
 ## 概要
