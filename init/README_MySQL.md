@@ -3,7 +3,7 @@
 ## 実行方法
 ```
 rm -r board/migrations
-python3 manage.py makemigrations
+python3 manage.py makemigrations board
 python3 manage.py migrate
 python3 init/kdb2db_mysql.py
 ```
